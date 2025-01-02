@@ -13,3 +13,9 @@ export_presets.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+# Ignore game art -- this will be shared elsewhere.
+assets/*
+
+# Except for the README in assets
+!assets/README.md
