@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dx21ii6a8hbi5"]
+
+[ext_resource type="Script" path="res://scenes/entities/projectile.gd" id="1_2ee50"]
+[ext_resource type="Texture2D" uid="uid://cr6ve67cebkqy" path="res://assets/sprites/arrow.png" id="2_bmwhn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_72kid"]
+size = Vector2(2, 1.5)
+
+[node name="Projectile" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_2ee50")
+
+[node name="ProjectileSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_bmwhn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(0, -1.75)
+shape = SubResource("RectangleShape2D_72kid")
