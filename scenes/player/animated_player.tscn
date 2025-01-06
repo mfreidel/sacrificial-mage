@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://cgo6l0386rbuo"]
+[gd_scene load_steps=38 format=3 uid="uid://cgo6l0386rbuo"]
 
 [ext_resource type="Texture2D" uid="uid://bcm6pq4cvy8gi" path="res://assets/sprites/NPC_test.png" id="1_31joh"]
 [ext_resource type="Script" path="res://scenes/player/animated_player.gd" id="1_b2sen"]
+[ext_resource type="Texture2D" uid="uid://ca5wohxc82ago" path="res://assets/sprites/player_swing.png" id="3_fx2li"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4k7vu"]
 size = Vector2(12, 18)
@@ -232,6 +233,115 @@ states/Walk/node = SubResource("AnimationNodeBlendSpace2D_r2jlf")
 states/Walk/position = Vector2(662, 106)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ch7l7"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_86uqt"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_orcxf")]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qx3if"]
+size = Vector2(30, 14)
+
+[sub_resource type="Animation" id="Animation_mpbai"]
+resource_name = "swing"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponCollision:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_mymb3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponCollision:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2hy75"]
+_data = {
+"RESET": SubResource("Animation_mymb3"),
+"swing": SubResource("Animation_mpbai")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n478x"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u3ik0"]
+animation = &"swing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vb8ip"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_30s0t"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_10upw"]
+states/End/position = Vector2(581, 100)
+states/RESET/node = SubResource("AnimationNodeAnimation_n478x")
+states/RESET/position = Vector2(384, 199)
+states/swing/node = SubResource("AnimationNodeAnimation_u3ik0")
+states/swing/position = Vector2(384, 100)
+transitions = ["swing", "RESET", SubResource("AnimationNodeStateMachineTransition_vb8ip"), "Start", "swing", SubResource("AnimationNodeStateMachineTransition_30s0t")]
+
 [node name="AnimatedPlayer" type="CharacterBody2D"]
 script = ExtResource("1_b2sen")
 
@@ -256,3 +366,27 @@ parameters/Walk/blend_position = Vector2(0.445732, 0.6375)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(5, 5)
+
+[node name="MeleeWeapon" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="WeaponSprite" type="Sprite2D" parent="MeleeWeapon"]
+visible = false
+position = Vector2(0, -5)
+texture = ExtResource("3_fx2li")
+hframes = 4
+
+[node name="WeaponCollision" type="CollisionShape2D" parent="MeleeWeapon"]
+position = Vector2(1, -11)
+shape = SubResource("RectangleShape2D_qx3if")
+disabled = true
+
+[node name="MeleeAnimationPlayer" type="AnimationPlayer" parent="MeleeWeapon"]
+libraries = {
+"": SubResource("AnimationLibrary_2hy75")
+}
+
+[node name="MeleeAnimationTree" type="AnimationTree" parent="MeleeWeapon"]
+tree_root = SubResource("AnimationNodeStateMachine_10upw")
+anim_player = NodePath("../MeleeAnimationPlayer")
