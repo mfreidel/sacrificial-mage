@@ -26,7 +26,6 @@ func handle_input():
 	velocity = move_direction * movement_speed
 	
 	if velocity == Vector2.ZERO:
-		pass
 		$AnimationTree.get("parameters/playback").travel("Idle")
 	else:
 		$AnimationTree.get("parameters/playback").travel("Walk")
