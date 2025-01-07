@@ -42,6 +42,10 @@ func handle_input():
 		move_direction.y -= 1.0
 		facing_rot = 0.0
 	
+	# Weapon switching input
+	if Input.is_action_just_pressed("switch_weapon"):
+		next_weapon()
+	
 	# Apply movement direction to MeleeWeapon rotation based on facing_rot
 	$MeleeWeapon.rotation = facing_rot
 	
@@ -80,7 +84,10 @@ func melee_damage(target_object):
 		target_object.HEALTH -= base_melee_damage
 
 func next_weapon():
-	pass
+	if ((len(weapons_list) - 1) == player_weapon):
+		player_weapon = 0
+	else:
+		player_weapon += 1
 
 func _physics_process(_delta: float) -> void:
 	handle_input()
