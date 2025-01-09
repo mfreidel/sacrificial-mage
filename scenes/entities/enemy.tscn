@@ -11,9 +11,9 @@ collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_jinkt")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="EnemySprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_wx3pp")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="BodyCollision" type="CollisionShape2D" parent="."]
 position = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_qtvqp")
