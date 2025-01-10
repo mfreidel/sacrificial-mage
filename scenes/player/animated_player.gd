@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+# exported vars
+@export var HEALTH = 5
+
 # Variables for ranged attack
 @onready var level_node = get_tree().get_root().get_node("Level")
 @onready var projectile = load("res://scenes/entities/projectile.tscn")
@@ -88,6 +91,15 @@ func next_weapon():
 		player_weapon = 0
 	else:
 		player_weapon += 1
+
+func damage_health(damage):
+	HEALTH -= damage
+	print("HP: " + str(HEALTH))
+	if HEALTH <= 0:
+		# Game over screen will be loaded here.
+		print("GAME OVER!")
+		queue_free()
+		
 
 func _physics_process(_delta: float) -> void:
 	handle_input()
