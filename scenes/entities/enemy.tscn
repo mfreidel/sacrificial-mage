@@ -100,4 +100,8 @@ libraries = {
 "": SubResource("AnimationLibrary_wrxc8")
 }
 
+[node name="AttackTimer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="Attack" to="." method="_on_attack_body_entered"]
+[connection signal="body_exited" from="Attack" to="." method="_on_attack_body_exited"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
