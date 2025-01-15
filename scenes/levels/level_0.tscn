@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://otl8h0mx25cb"]
+[gd_scene load_steps=6 format=4 uid="uid://otl8h0mx25cb"]
 
 [ext_resource type="TileSet" uid="uid://bqv1xnucopie0" path="res://scenes/levels/overworld_tileset.tres" id="1_18v3e"]
 [ext_resource type="PackedScene" uid="uid://cgo6l0386rbuo" path="res://scenes/player/animated_player.tscn" id="2_sugl3"]
 [ext_resource type="Script" path="res://scenes/levels/ground_layer.gd" id="2_xrp7p"]
 [ext_resource type="PackedScene" uid="uid://covux0bdku0gj" path="res://scenes/entities/enemy.tscn" id="3_byay2"]
+[ext_resource type="PackedScene" uid="uid://djysclb75ysnk" path="res://scenes/entities/enemy_spawner.tscn" id="4_366m8"]
 
 [node name="Level" type="Node2D"]
 
@@ -12,6 +13,12 @@ tile_map_data = PackedByteArray("AAD+//7/AAAAAAAAAAD+////AAAAAAAAAAD+/wAAAAAAAAA
 tile_set = ExtResource("1_18v3e")
 script = ExtResource("2_xrp7p")
 
+[node name="EnemyContainer" type="Node2D" parent="."]
+
+[node name="Enemy" parent="EnemyContainer" node_paths=PackedStringArray("PATH_TARGET") instance=ExtResource("3_byay2")]
+position = Vector2(159, 63)
+PATH_TARGET = NodePath("../../AnimatedPlayer")
+
 [node name="AnimatedPlayer" parent="." instance=ExtResource("2_sugl3")]
 position = Vector2(340, 171)
 
@@ -19,6 +26,5 @@ position = Vector2(340, 171)
 tile_map_data = PackedByteArray("AAAGAAIAAAAAABAAAAAHAAIAAAACAA0AAAAIAAIAAAACAA0AAAAJAAIAAAACAA0AAAAKAAIAAAACAA0AAAALAAIAAAACAA0AAAAMAAIAAAACAA0AAAANAAIAAAABABAAAAANAAUAAAABABAAAAAMAAUAAAACAA0AAAALAAUAAAACAA0AAAAKAAUAAAACAA0AAAAJAAUAAAACAA0AAAAIAAUAAAACAA0AAAAHAAUAAAACAA0AAAAGAAUAAAAAABAAAAAUAAUAAAAGAAAAAAAbAAYAAAAIAB8AAAA=")
 tile_set = ExtResource("1_18v3e")
 
-[node name="Enemy" parent="." node_paths=PackedStringArray("PATH_TARGET") instance=ExtResource("3_byay2")]
-position = Vector2(159, 63)
-PATH_TARGET = NodePath("../AnimatedPlayer")
+[node name="EnemySpawner" parent="." instance=ExtResource("4_366m8")]
+position = Vector2(493, 114)
