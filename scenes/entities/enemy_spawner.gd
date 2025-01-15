@@ -14,10 +14,12 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-
-func _on_spawn_timer_timeout() -> void:
+func spawn_enemy() -> void:
 	var inst_enemy = res_enemy.instantiate()
 	inst_enemy.position = position
 	inst_enemy.PATH_TARGET = get_parent().get_node("AnimatedPlayer")
 	get_parent().get_node("EnemyContainer").add_child(inst_enemy)
 	emit_signal("enemy_spawned")
+
+func _on_spawn_timer_timeout() -> void:
+	spawn_enemy()
