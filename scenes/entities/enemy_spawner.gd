@@ -18,4 +18,4 @@ func _on_spawn_timer_timeout() -> void:
 	var inst_enemy = res_enemy.instantiate()
 	inst_enemy.position = position
 	inst_enemy.PATH_TARGET = get_parent().get_node("AnimatedPlayer")
-	get_parent().add_child(inst_enemy)
+	get_parent().get_node("EnemyContainer").add_child(inst_enemy)

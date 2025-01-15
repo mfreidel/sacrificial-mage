@@ -13,6 +13,12 @@ tile_map_data = PackedByteArray("AAD+//7/AAAAAAAAAAD+////AAAAAAAAAAD+/wAAAAAAAAA
 tile_set = ExtResource("1_18v3e")
 script = ExtResource("2_xrp7p")
 
+[node name="EnemyContainer" type="Node2D" parent="."]
+
+[node name="Enemy" parent="EnemyContainer" node_paths=PackedStringArray("PATH_TARGET") instance=ExtResource("3_byay2")]
+position = Vector2(159, 63)
+PATH_TARGET = NodePath("../../AnimatedPlayer")
+
 [node name="AnimatedPlayer" parent="." instance=ExtResource("2_sugl3")]
 position = Vector2(340, 171)
 
@@ -22,7 +28,3 @@ tile_set = ExtResource("1_18v3e")
 
 [node name="EnemySpawner" parent="." instance=ExtResource("4_366m8")]
 position = Vector2(493, 114)
-
-[node name="Enemy" parent="." node_paths=PackedStringArray("PATH_TARGET") instance=ExtResource("3_byay2")]
-position = Vector2(159, 63)
-PATH_TARGET = NodePath("../AnimatedPlayer")
