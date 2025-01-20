@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dyttqwvhxxfuk"]
+[gd_scene load_steps=6 format=3 uid="uid://dyttqwvhxxfuk"]
 
+[ext_resource type="Script" path="res://scenes/towers/cannon.gd" id="1_mlec5"]
 [ext_resource type="Texture2D" uid="uid://ijul0fs6l27k" path="res://assets/sprites/cannon.png" id="1_xc3t7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7awts"]
@@ -14,11 +15,11 @@ size = Vector2(23, 19)
 [node name="Cannon" type="StaticBody2D"]
 collision_layer = 3
 collision_mask = 3
+script = ExtResource("1_mlec5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_xc3t7")
 hframes = 4
-frame = 3
 
 [node name="VertColShape" type="CollisionShape2D" parent="."]
 position = Vector2(-8, -2)
@@ -27,7 +28,9 @@ shape = SubResource("RectangleShape2D_7awts")
 [node name="RightColShape" type="CollisionShape2D" parent="."]
 position = Vector2(-4.5, 4.5)
 shape = SubResource("RectangleShape2D_7cbvf")
+disabled = true
 
 [node name="LeftColShape" type="CollisionShape2D" parent="."]
 position = Vector2(4.5, 4.5)
 shape = SubResource("RectangleShape2D_t4ig7")
+disabled = true
