@@ -7,6 +7,45 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qx3if"]
 size = Vector2(30, 14)
 
+[sub_resource type="Animation" id="Animation_mymb3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponCollision:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_mpbai"]
 resource_name = "swing"
 length = 0.2
@@ -45,45 +84,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_mymb3"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("WeaponSprite:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("WeaponSprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("WeaponCollision:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2hy75"]
@@ -339,12 +339,14 @@ states/Walk/node = SubResource("AnimationNodeBlendSpace2D_r2jlf")
 states/Walk/position = Vector2(662, 106)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ch7l7"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_86uqt"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_orcxf")]
 
-[node name="AnimatedPlayer" type="CharacterBody2D"]
+[node name="AnimatedPlayer" type="CharacterBody2D" groups=["player"]]
+collision_layer = 20
+collision_mask = 35
 script = ExtResource("1_b2sen")
 
 [node name="MeleeWeapon" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 8
+collision_mask = 66
 
 [node name="WeaponSprite" type="Sprite2D" parent="MeleeWeapon"]
 visible = false

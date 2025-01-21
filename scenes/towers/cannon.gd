@@ -4,11 +4,23 @@ extends "res://scenes/towers/tower.gd"
 @onready var projectile = load("res://scenes/entities/projectile.tscn")
 @onready var cball_image = load("res://assets/sprites/cannonball.png")
 
+# Make interaction area accessible here
+@onready var interaction_area: InteractionArea = $InteractionArea
+
 var facing_rot = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	interaction_area.interact = Callable(self, "_on_interact")
+
+# Interaction options for the object
+func _on_interact() -> void:
+	if $FiringTimer.is_stopped():
+		$FiringTimer.start()
+		print("cannon.gd -- FiringTimer started.")
+	else:
+		$FiringTimer.stop()
+		print("cannon.gd -- FiringTimer stopped.")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
