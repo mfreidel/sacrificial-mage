@@ -13,11 +13,10 @@ size = Vector2(23, 19)
 size = Vector2(23, 19)
 
 [node name="Cannon" type="StaticBody2D"]
-collision_layer = 3
-collision_mask = 3
+z_index = 1
 script = ExtResource("1_mlec5")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="CannonSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_xc3t7")
 hframes = 4
 
@@ -34,3 +33,8 @@ disabled = true
 position = Vector2(4.5, 4.5)
 shape = SubResource("RectangleShape2D_t4ig7")
 disabled = true
+
+[node name="FiringTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="FiringTimer" to="." method="_on_firing_timer_timeout"]
