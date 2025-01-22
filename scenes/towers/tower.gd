@@ -7,5 +7,8 @@ extends StaticBody2D
 ## This is **NOT** intended to be directly attached to objects. Other scripts 
 ## attached to a StaticBody2D node should extend this file instead 
 ## of the built-in StaticBody2D object.
-@export var HEALTH : int = 5
-@export var UPGRADES : int = 0
+@export var MAX_HEALTH = 20.0
+@export var MAX_LEVEL : int = 5
+
+@onready var health = MAX_HEALTH
+@onready var level = 1
