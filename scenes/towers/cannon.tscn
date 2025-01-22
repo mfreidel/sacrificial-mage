@@ -26,6 +26,7 @@ script = ExtResource("1_mlec5")
 [node name="CannonSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_xc3t7")
 hframes = 4
+frame = 3
 
 [node name="VertColShape" type="CollisionShape2D" parent="."]
 position = Vector2(-8, -2)
@@ -53,3 +54,4 @@ shape = SubResource("CircleShape2D_cjb6g")
 
 [connection signal="timeout" from="FiringTimer" to="." method="_on_firing_timer_timeout"]
 [connection signal="firing_state_toggled" from="CannonMenu" to="." method="_on_cannon_menu_firing_state_toggled"]
+[connection signal="rotate_pressed" from="CannonMenu" to="." method="_on_cannon_menu_rotate_pressed"]

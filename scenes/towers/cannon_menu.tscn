@@ -19,9 +19,9 @@ script = ExtResource("1_1fkch")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -121.0
+offset_left = 4.0
 offset_top = 4.0
-offset_right = 121.0
+offset_right = 246.0
 offset_bottom = 109.0
 grow_horizontal = 2
 
@@ -44,7 +44,7 @@ justification_flags = 162
 layout_mode = 2
 text = "0"
 
-[node name="HealthDetails" type="Label" parent="VBoxContainer/HealthContainer"]
+[node name="HealthDivider" type="Label" parent="VBoxContainer/HealthContainer"]
 layout_mode = 2
 text = "/"
 
