@@ -1,0 +1,91 @@
+[gd_scene load_steps=4 format=3 uid="uid://2l3jenqxk1f3"]
+
+[ext_resource type="Script" path="res://scenes/towers/cannon_menu.gd" id="1_1fkch"]
+[ext_resource type="FontFile" uid="uid://mb1jol24xvf8" path="res://assets/fonts/connection_ii/ConnectionII.otf" id="1_gdfgx"]
+
+[sub_resource type="Theme" id="Theme_8mu52"]
+default_font = ExtResource("1_gdfgx")
+default_font_size = 16
+
+[node name="CannonMenu" type="PopupPanel"]
+transparent_bg = true
+initial_position = 2
+size = Vector2i(250, 113)
+visible = true
+theme = SubResource("Theme_8mu52")
+script = ExtResource("1_1fkch")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -121.0
+offset_top = 4.0
+offset_right = 121.0
+offset_bottom = 109.0
+grow_horizontal = 2
+
+[node name="MenuTitle" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Cannon Menu"
+horizontal_alignment = 1
+justification_flags = 162
+
+[node name="HealthContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HealthLabel" type="Label" parent="VBoxContainer/HealthContainer"]
+layout_mode = 2
+text = "Health:"
+horizontal_alignment = 1
+justification_flags = 162
+
+[node name="HealthStatus" type="Label" parent="VBoxContainer/HealthContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="HealthDetails" type="Label" parent="VBoxContainer/HealthContainer"]
+layout_mode = 2
+text = "/"
+
+[node name="HealthMax" type="Label" parent="VBoxContainer/HealthContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="LevelContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="LevelLabel" type="Label" parent="VBoxContainer/LevelContainer"]
+layout_mode = 2
+text = "Level:"
+
+[node name="LevelStatus" type="Label" parent="VBoxContainer/LevelContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="ButtonContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ToggleFireButton" type="Button" parent="VBoxContainer/ButtonContainer"]
+layout_mode = 2
+toggle_mode = true
+text = "Toggle
+Fire"
+
+[node name="RotateButton" type="Button" parent="VBoxContainer/ButtonContainer"]
+layout_mode = 2
+text = "Rotate"
+
+[node name="HealButton" type="Button" parent="VBoxContainer/ButtonContainer"]
+layout_mode = 2
+text = "Heal"
+
+[node name="UpgradeButton" type="Button" parent="VBoxContainer/ButtonContainer"]
+layout_mode = 2
+text = "Upgrade"
+
+[connection signal="toggled" from="VBoxContainer/ButtonContainer/ToggleFireButton" to="." method="_on_toggle_fire_button_toggled"]
+[connection signal="pressed" from="VBoxContainer/ButtonContainer/RotateButton" to="." method="_on_rotate_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonContainer/HealButton" to="." method="_on_heal_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonContainer/UpgradeButton" to="." method="_on_upgrade_button_pressed"]

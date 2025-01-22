@@ -15,12 +15,7 @@ func _ready() -> void:
 
 # Interaction options for the object
 func _on_interact() -> void:
-	if $FiringTimer.is_stopped():
-		$FiringTimer.start()
-		print("cannon.gd -- FiringTimer started.")
-	else:
-		$FiringTimer.stop()
-		print("cannon.gd -- FiringTimer stopped.")
+	$CannonMenu.popup()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,5 +39,24 @@ func shoot():
 	level_node.add_child.call_deferred(instance)
 
 
+func toggle_firing_timer() -> void:
+	if $FiringTimer.is_stopped():
+		$FiringTimer.start()
+		print("cannon.gd -- FiringTimer started.")
+	else:
+		$FiringTimer.stop()
+		print("cannon.gd -- FiringTimer stopped.")
+
 func _on_firing_timer_timeout() -> void:
 	shoot()
+
+
+func _on_cannon_menu_firing_state_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		if $FiringTimer.is_stopped():
+			$FiringTimer.start()
+			print("cannon.gd -- FiringTimer started.")
+	else:
+		if !($FiringTimer.is_stopped()):
+			$FiringTimer.stop()
+			print("cannon.gd -- FiringTimer stopped.")
