@@ -10,7 +10,7 @@ default_font_size = 16
 [node name="CannonMenu" type="PopupPanel"]
 transparent_bg = true
 initial_position = 2
-size = Vector2i(250, 113)
+size = Vector2i(269, 113)
 visible = true
 theme = SubResource("Theme_8mu52")
 script = ExtResource("1_1fkch")
@@ -21,7 +21,7 @@ anchor_left = 0.5
 anchor_right = 0.5
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 246.0
+offset_right = 265.0
 offset_bottom = 109.0
 grow_horizontal = 2
 
@@ -79,13 +79,13 @@ text = "Rotate"
 
 [node name="HealButton" type="Button" parent="VBoxContainer/ButtonContainer"]
 layout_mode = 2
-text = "Heal"
+text = "Heal (5)"
 
 [node name="UpgradeButton" type="Button" parent="VBoxContainer/ButtonContainer"]
 layout_mode = 2
 text = "Upgrade"
 
-[node name="LabelRefresh" type="Timer" parent="."]
+[node name="MenuRefresh" type="Timer" parent="."]
 wait_time = 0.2
 
 [connection signal="about_to_popup" from="." to="." method="_on_about_to_popup"]
@@ -94,4 +94,4 @@ wait_time = 0.2
 [connection signal="pressed" from="VBoxContainer/ButtonContainer/RotateButton" to="." method="_on_rotate_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonContainer/HealButton" to="." method="_on_heal_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonContainer/UpgradeButton" to="." method="_on_upgrade_button_pressed"]
-[connection signal="timeout" from="LabelRefresh" to="." method="_on_label_refresh_timeout"]
+[connection signal="timeout" from="MenuRefresh" to="." method="_on_menu_refresh_timeout"]

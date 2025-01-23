@@ -37,14 +37,21 @@ func _on_upgrade_button_pressed() -> void:
 
 
 func _on_about_to_popup() -> void:
-	$LabelRefresh.start()
+	$MenuRefresh.start()
 
 
 func _on_popup_hide() -> void:
-	$LabelRefresh.stop()
+	$MenuRefresh.stop()
 
-
-func _on_label_refresh_timeout() -> void:
+# Refreshes the menu every .2 seconds according to MenuRefresh timer.
+func _on_menu_refresh_timeout() -> void:
+	# Update Labels
 	health_stat_label.text = str(cannon.health)
 	health_max_label.text = str(cannon.MAX_HEALTH)
 	lvl_stat_label.text = str(cannon.level)
+	
+	# Update Buttons
+	if cannon.health == cannon.MAX_HEALTH:
+		$VBoxContainer/ButtonContainer/HealButton.disabled = true
+	else:
+		$VBoxContainer/ButtonContainer/HealButton.disabled = false

@@ -54,4 +54,5 @@ shape = SubResource("CircleShape2D_cjb6g")
 
 [connection signal="timeout" from="FiringTimer" to="." method="_on_firing_timer_timeout"]
 [connection signal="firing_state_toggled" from="CannonMenu" to="." method="_on_cannon_menu_firing_state_toggled"]
+[connection signal="heal_pressed" from="CannonMenu" to="." method="_on_cannon_menu_heal_pressed"]
 [connection signal="rotate_pressed" from="CannonMenu" to="." method="_on_cannon_menu_rotate_pressed"]

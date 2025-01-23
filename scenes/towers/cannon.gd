@@ -102,3 +102,11 @@ func _on_cannon_menu_rotate_pressed() -> void:
 	facing_rot = directions_list[facing_index]
 	face_sprite(directions_list[facing_index])
 	
+
+
+func _on_cannon_menu_heal_pressed() -> void:
+	var heal_cost = 5.0
+	var new_health = health + heal_cost
+	if new_health > MAX_HEALTH:
+		heal_cost = MAX_HEALTH - health # Don't charge more than what gets used.
+	heal_from_player(heal_cost)
