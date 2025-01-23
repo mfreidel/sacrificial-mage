@@ -19,6 +19,8 @@ func body_is_attackable(attack_body):
 	var check = false
 	if attack_body.get_name() == "AnimatedPlayer":
 		check = true
+	if attack_body is TowerNode:
+		check = true
 	return check
 
 func makepath() -> void:
