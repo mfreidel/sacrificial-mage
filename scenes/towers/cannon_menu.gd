@@ -13,7 +13,7 @@ signal upgrade_pressed
 
 
 func _ready() -> void:
-	pass
+	hide()
 
 func _input(event) -> void:
 	if event.is_action_pressed("interact"):
