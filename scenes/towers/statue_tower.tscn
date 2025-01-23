@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://d16yhcw7gr0c7"]
+[gd_scene load_steps=7 format=3 uid="uid://d16yhcw7gr0c7"]
 
 [ext_resource type="Script" path="res://scenes/towers/statue_tower.gd" id="1_16yir"]
 [ext_resource type="Texture2D" uid="uid://cqahfi2tm8awy" path="res://assets/sprites/statue.png" id="2_vgdoq"]
 [ext_resource type="PackedScene" uid="uid://brjjb7yuiiqep" path="res://scenes/interaction/interaction_area.tscn" id="3_4emnf"]
+[ext_resource type="PackedScene" uid="uid://2es8iplhbb1" path="res://scenes/towers/statue_menu.tscn" id="4_sex1j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7awts"]
 size = Vector2(31, 34)
@@ -28,3 +29,5 @@ shape = SubResource("RectangleShape2D_7awts")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 visible = false
 shape = SubResource("CircleShape2D_cjb6g")
+
+[node name="StatueMenu" parent="." instance=ExtResource("4_sex1j")]
