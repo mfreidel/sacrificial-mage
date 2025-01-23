@@ -16,6 +16,18 @@ var attack_target : Node2D
 func damage_health(damage):
 	HEALTH -= damage
 	
+func face_left() -> void:
+	$EnemySprite.flip_h = true
+	$Attack/AttackSprite.flip_h = true
+	$Attack/AttackShapeRight.disabled = true
+	$Attack/AttackShapeLeft.disabled = false
+
+func face_right() -> void:
+	$EnemySprite.flip_h = false
+	$Attack/AttackSprite.flip_h = false
+	$Attack/AttackShapeRight.disabled = false
+	$Attack/AttackShapeLeft.disabled = true
+	
 func body_is_attackable(attack_body):
 	var check = false
 	if attack_body.get_name() == "AnimatedPlayer":
@@ -47,12 +59,18 @@ func _physics_process(_delta) -> void:
 		var current_agent_pos = global_position
 		var move_direction = current_agent_pos.direction_to(next_agent_path_pos)
 		velocity = move_direction * MOVE_SPEED
+		if move_direction.x < 0:
+			face_left()
+		if move_direction.x > 0:
+			face_right()
 	move_and_slide()
 
 func _ready() -> void:
+	face_right()
 	call_deferred("path_setup")
 	if !($AttackTimer.is_stopped()):
 			$AttackTimer.stop()
+
 
 func _on_attack_body_entered(body: Node2D) -> void:
 	if body_is_attackable(body):

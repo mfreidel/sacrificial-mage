@@ -88,8 +88,12 @@ position = Vector2(1, 7)
 collision_layer = 32
 collision_mask = 18
 
-[node name="AttackShape" type="CollisionShape2D" parent="Attack"]
-position = Vector2(8.5, -8)
+[node name="AttackShapeRight" type="CollisionShape2D" parent="Attack"]
+position = Vector2(8, -8)
+shape = SubResource("RectangleShape2D_16f77")
+
+[node name="AttackShapeLeft" type="CollisionShape2D" parent="Attack"]
+position = Vector2(-8, -8)
 shape = SubResource("RectangleShape2D_16f77")
 
 [node name="AttackSprite" type="Sprite2D" parent="Attack"]
