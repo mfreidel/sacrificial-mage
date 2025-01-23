@@ -1,11 +1,14 @@
 extends CharacterBody2D
 
 # exported vars
-@export var HEALTH = 5
+@export var MAX_HEALTH = 20.0
 
 # Variables for ranged attack
 @onready var level_node = get_tree().get_root().get_node("Level")
 @onready var projectile = load("res://scenes/entities/projectile.tscn")
+
+# Set health based on MAX_HEALTH
+var health = MAX_HEALTH
 
 # Variables for weapon switching
 var player_weapon = 0
@@ -93,9 +96,9 @@ func next_weapon():
 		player_weapon += 1
 
 func damage_health(damage):
-	HEALTH -= damage
-	print("HP: " + str(HEALTH))
-	if HEALTH <= 0:
+	health -= damage
+	print("HP: " + str(health))
+	if health <= 0:
 		# Game over screen will be loaded here.
 		print("GAME OVER!")
 		queue_free()

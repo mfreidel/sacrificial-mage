@@ -1,5 +1,6 @@
 extends StaticBody2D
-## tower.gd -- Common code for towers
+class_name TowerNode
+## tower.gd -- Common class for towers
 ##
 ## A collection of reusable functions and common variables for towers.
 ## Potentially can be used for other structures.
@@ -7,8 +8,32 @@ extends StaticBody2D
 ## This is **NOT** intended to be directly attached to objects. Other scripts 
 ## attached to a StaticBody2D node should extend this file instead 
 ## of the built-in StaticBody2D object.
+
+# Exported vars
 @export var MAX_HEALTH = 20.0
 @export var MAX_LEVEL : int = 5
+@export var BUILD_COST = 5.0
 
-@onready var health = MAX_HEALTH
-@onready var level = 1
+# All towers will have both health points and levels
+var health = MAX_HEALTH
+var level = 1
+
+# Towers will need access to the level and player nodes
+@onready var level_node = get_tree().get_root().get_node("Level")
+@onready var player_node = get_tree().get_first_node_in_group("player")
+
+func heal_from_player(health_val: float) -> void:
+	player_node.damage_health(health_val)
+	increase_health(health_val)
+	
+func increase_health(health_val: float) -> void:
+	var new_health = health + health_val
+	if new_health > MAX_HEALTH:
+		health = MAX_HEALTH
+	else:
+		health = new_health
+
+func damage_health(damage: float) -> void:
+	health -= damage
+	if health <= 0:
+		queue_free()

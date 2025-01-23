@@ -1,6 +1,6 @@
-extends "res://scenes/towers/tower.gd"
+extends TowerNode
 
-@onready var level_node = get_tree().get_root().get_node("Level")
+
 @onready var projectile = load("res://scenes/entities/projectile.tscn")
 @onready var cball_image = load("res://assets/sprites/cannonball.png")
 
