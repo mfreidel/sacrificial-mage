@@ -1,5 +1,7 @@
 extends TowerNode
 
+@export var HEALTH_BUFF = 10.0
+
 
 @onready var projectile = load("res://scenes/entities/projectile.tscn")
 @onready var cball_image = load("res://assets/sprites/cannonball.png")
@@ -16,7 +18,6 @@ func _ready() -> void:
 # Interaction options for the object
 func _on_interact() -> void:
 	$StatueMenu.popup()
-	pass # This should be StatueMenu
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

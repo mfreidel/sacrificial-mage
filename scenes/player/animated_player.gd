@@ -1,18 +1,20 @@
 extends CharacterBody2D
 
 # exported vars
-@export var MAX_HEALTH = 20.0
+@export var DEFAULT_MAX_HEALTH = 20.0
+
+# Set health vars based on DEFAULT_MAX_HEALTH
+@onready var MAX_HEALTH = DEFAULT_MAX_HEALTH
+@onready var health = MAX_HEALTH
 
 # Variables for ranged attack
 @onready var level_node = get_tree().get_root().get_node("Level")
 @onready var projectile = load("res://scenes/entities/projectile.tscn")
 
+
 # Variables for towers
 @onready var res_cannon = preload("res://scenes/towers/cannon.tscn")
 var build_area_obstacles = 0
-
-# Set health based on MAX_HEALTH
-var health = MAX_HEALTH
 
 # Variables for weapon switching
 var player_weapon : int = 0
@@ -87,6 +89,14 @@ func handle_input():
 	# END OF handle_input() function
 
 
+func apply_buffs_from_statues() -> void:
+	MAX_HEALTH = DEFAULT_MAX_HEALTH # Set MAX to DEFAULT right away
+	var statues_list = get_tree().get_nodes_in_group("statue_towers") # Statue scene is pre-configured to be here
+	if len(statues_list) > 0:
+		for statue in statues_list:
+			# Loop through a non-empty list of statues, adding each HEALTH_BUFF
+			MAX_HEALTH += statue.HEALTH_BUFF
+
 ## Avoids casting yourself to death
 func check_casting_cost(cost_val: float):
 	var check = false
@@ -151,6 +161,7 @@ func next_weapon():
 func damage_health(damage):
 	health -= damage
 	print("HP: " + str(health))
+	print("MAX_HEALTH: " + str(MAX_HEALTH))
 	if health <= 0:
 		# Game over screen will be loaded here.
 		print("GAME OVER!")
@@ -160,6 +171,7 @@ func damage_health(damage):
 func _physics_process(_delta: float) -> void:
 	# Apply input handling
 	handle_input()
+	apply_buffs_from_statues()
 	
 	# Apply movement direction to MeleeWeapon rotation based on facing_rot
 	$MeleeWeapon.rotation = facing_rot
