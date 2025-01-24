@@ -9,6 +9,8 @@ extends TowerNode
 # Make interaction area accessible here
 @onready var interaction_area: InteractionArea = $InteractionArea
 
+var BUILD_COST = 15.0
+
 
 
 # Called when the node enters the scene tree for the first time.
