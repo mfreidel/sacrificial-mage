@@ -6,18 +6,50 @@ extends CharacterBody2D
 @export var BASE_DAMAGE = 1.0
 @export var PATH_TARGET: Node2D
 
-#@onready var level_node = get_tree().get_root().get_node("Level")
+# Vars for path navigation
 @onready var nav_agent = $NavigationAgent2D
+@onready var next_agent_path_pos
+
+# Vars for dropping powerups
+@onready var level_node = get_tree().get_root().get_node("Level")
+@onready var res_heath_powup = preload("res://scenes/entities/health_powerup.tscn")
 
 var can_attack = false
 var attack_target : Node2D
 
+func drop_powerup(powup_name: String) -> void:
+	if powup_name == "health":
+		var inst_heath_powup = res_heath_powup.instantiate()
+		inst_heath_powup.position = global_position
+		level_node.add_child.call_deferred(inst_heath_powup)
+
+
+func death() -> void:
+	drop_powerup("health")
+	queue_free()
+
+
 func damage_health(damage):
 	HEALTH -= damage
+
+
+func face_left() -> void:
+	$EnemySprite.flip_h = true
+	$Attack/AttackSprite.flip_h = true
+	$Attack/AttackShapeRight.disabled = true
+	$Attack/AttackShapeLeft.disabled = false
+
+func face_right() -> void:
+	$EnemySprite.flip_h = false
+	$Attack/AttackSprite.flip_h = false
+	$Attack/AttackShapeRight.disabled = false
+	$Attack/AttackShapeLeft.disabled = true
 	
 func body_is_attackable(attack_body):
 	var check = false
 	if attack_body.get_name() == "AnimatedPlayer":
+		check = true
+	if attack_body is TowerNode:
 		check = true
 	return check
 
@@ -39,19 +71,23 @@ func single_attack(attack_body):
 
 func _physics_process(_delta) -> void:
 	if HEALTH <= 0:
-		queue_free()
-	if PATH_TARGET:
-		makepath()
-	var current_agent_pos = global_position
-	var next_path_pos = nav_agent.get_next_path_position()
-	var move_direction = current_agent_pos.direction_to(next_path_pos)
-	velocity = move_direction * MOVE_SPEED
+		death()
+	if PATH_TARGET && next_agent_path_pos:
+		var current_agent_pos = global_position
+		var move_direction = current_agent_pos.direction_to(next_agent_path_pos)
+		velocity = move_direction * MOVE_SPEED
+		if move_direction.x < 0:
+			face_left()
+		if move_direction.x > 0:
+			face_right()
 	move_and_slide()
 
 func _ready() -> void:
+	face_right()
 	call_deferred("path_setup")
 	if !($AttackTimer.is_stopped()):
 			$AttackTimer.stop()
+
 
 func _on_attack_body_entered(body: Node2D) -> void:
 	if body_is_attackable(body):
@@ -75,3 +111,8 @@ func _on_attack_timer_timeout() -> void:
 		single_attack(attack_target)
 	else:
 		$AttackTimer.stop()
+
+
+func _on_path_refresh_timeout() -> void:
+	makepath()
+	next_agent_path_pos = nav_agent.get_next_path_position()

@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://dyttqwvhxxfuk"]
+
+[ext_resource type="Script" path="res://scenes/towers/cannon.gd" id="1_mlec5"]
+[ext_resource type="Texture2D" uid="uid://ijul0fs6l27k" path="res://assets/sprites/cannon.png" id="1_xc3t7"]
+[ext_resource type="PackedScene" uid="uid://brjjb7yuiiqep" path="res://scenes/interaction/interaction_area.tscn" id="3_1e7fl"]
+[ext_resource type="PackedScene" uid="uid://2l3jenqxk1f3" path="res://scenes/towers/cannon_menu.tscn" id="4_g7k1k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7awts"]
+size = Vector2(16, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7cbvf"]
+size = Vector2(23, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t4ig7"]
+size = Vector2(23, 19)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cjb6g"]
+radius = 37.108
+
+[node name="Cannon" type="StaticBody2D"]
+z_index = 1
+collision_layer = 2
+collision_mask = 108
+script = ExtResource("1_mlec5")
+
+[node name="CannonSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_xc3t7")
+hframes = 4
+frame = 3
+
+[node name="VertColShape" type="CollisionShape2D" parent="."]
+position = Vector2(-8, -2)
+shape = SubResource("RectangleShape2D_7awts")
+
+[node name="RightColShape" type="CollisionShape2D" parent="."]
+position = Vector2(-4.5, 4.5)
+shape = SubResource("RectangleShape2D_7cbvf")
+disabled = true
+
+[node name="LeftColShape" type="CollisionShape2D" parent="."]
+position = Vector2(4.5, 4.5)
+shape = SubResource("RectangleShape2D_t4ig7")
+disabled = true
+
+[node name="FiringTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="InteractionArea" parent="." instance=ExtResource("3_1e7fl")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_cjb6g")
+
+[node name="CannonMenu" parent="." instance=ExtResource("4_g7k1k")]
+
+[connection signal="timeout" from="FiringTimer" to="." method="_on_firing_timer_timeout"]
+[connection signal="firing_state_toggled" from="CannonMenu" to="." method="_on_cannon_menu_firing_state_toggled"]
+[connection signal="heal_pressed" from="CannonMenu" to="." method="_on_cannon_menu_heal_pressed"]
+[connection signal="rotate_pressed" from="CannonMenu" to="." method="_on_cannon_menu_rotate_pressed"]

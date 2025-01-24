@@ -613,6 +613,6 @@ texture = ExtResource("1_uvr24")
 
 [resource]
 physics_layer_0/collision_layer = 3
-physics_layer_0/collision_mask = 3
+physics_layer_0/collision_mask = 76
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_fb03y")

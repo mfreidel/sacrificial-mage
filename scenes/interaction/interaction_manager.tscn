@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwdfsycqaopoo"]
+
+[ext_resource type="FontFile" uid="uid://mb1jol24xvf8" path="res://assets/fonts/connection_ii/ConnectionII.otf" id="1_2fpph"]
+[ext_resource type="Script" path="res://scenes/interaction/interaction_manager.gd" id="1_afyan"]
+
+[node name="InteractionManager" type="Node2D"]
+script = ExtResource("1_afyan")
+
+[node name="Label" type="Label" parent="."]
+z_index = 20
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -52.5
+offset_right = 52.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_2fpph")
+text = "[e] to interact"
+horizontal_alignment = 1
+vertical_alignment = 1
