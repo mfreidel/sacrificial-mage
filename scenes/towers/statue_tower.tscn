@@ -27,7 +27,8 @@ shape = SubResource("RectangleShape2D_7awts")
 [node name="InteractionArea" parent="." instance=ExtResource("3_4emnf")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-visible = false
 shape = SubResource("CircleShape2D_cjb6g")
 
 [node name="StatueMenu" parent="." instance=ExtResource("4_sex1j")]
+
+[connection signal="heal_pressed" from="StatueMenu" to="." method="_on_statue_menu_heal_pressed"]

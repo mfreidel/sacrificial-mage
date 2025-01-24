@@ -15,7 +15,7 @@ func _ready() -> void:
 
 # Interaction options for the object
 func _on_interact() -> void:
-	#$CannonMenu.popup()
+	$StatueMenu.popup()
 	pass # This should be StatueMenu
 
 
