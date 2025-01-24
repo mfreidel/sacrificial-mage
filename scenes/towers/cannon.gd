@@ -7,6 +7,9 @@ extends TowerNode
 # Make interaction area accessible here
 @onready var interaction_area: InteractionArea = $InteractionArea
 
+# Use default build cost from TowerNode class
+var BUILD_COST = DEFAULT_BUILD_COST
+
 # Used for simulating object rotation value, just like in animated_player.gd
 var facing_rot = 0
 

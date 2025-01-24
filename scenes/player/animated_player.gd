@@ -1,18 +1,21 @@
 extends CharacterBody2D
 
 # exported vars
-@export var MAX_HEALTH = 20.0
+@export var DEFAULT_MAX_HEALTH = 20.0
+
+# Set health vars based on DEFAULT_MAX_HEALTH
+@onready var MAX_HEALTH = DEFAULT_MAX_HEALTH
+@onready var health = MAX_HEALTH
 
 # Variables for ranged attack
 @onready var level_node = get_tree().get_root().get_node("Level")
 @onready var projectile = load("res://scenes/entities/projectile.tscn")
 
+
 # Variables for towers
+@onready var res_statue = preload("res://scenes/towers/statue_tower.tscn")
 @onready var res_cannon = preload("res://scenes/towers/cannon.tscn")
 var build_area_obstacles = 0
-
-# Set health based on MAX_HEALTH
-var health = MAX_HEALTH
 
 # Variables for weapon switching
 var player_weapon : int = 0
@@ -20,7 +23,7 @@ var weapons_list = ["melee", "ranged"]
 
 # Equiping Towers works just like switching weapons
 var selected_tower : int = 0
-var towers_list = ["cannon"]
+var towers_list = ["cannon", "statue"]
 
 
 # Base damage value for melee attack
@@ -61,6 +64,10 @@ func handle_input():
 	if Input.is_action_just_pressed("switch_weapon"):
 		next_weapon()
 	
+	# Tower switching input
+	if Input.is_action_just_pressed("switch_tower"):
+		next_tower()
+	
 	# Attack input
 	if Input.is_action_just_pressed("attack"):
 		if (weapons_list[player_weapon] == "ranged"):
@@ -87,10 +94,20 @@ func handle_input():
 	# END OF handle_input() function
 
 
+func apply_buffs_from_statues() -> void:
+	MAX_HEALTH = DEFAULT_MAX_HEALTH # Set MAX to DEFAULT right away
+	var statues_list = get_tree().get_nodes_in_group("statue_towers") # Statue scene is pre-configured to be here
+	if len(statues_list) > 0:
+		for statue in statues_list:
+			# Loop through a non-empty list of statues, adding each HEALTH_BUFF
+			MAX_HEALTH += statue.HEALTH_BUFF
+
 ## Avoids casting yourself to death
 func check_casting_cost(cost_val: float):
+	var min_health = 1
+	var health_after_cast = health - cost_val
 	var check = false
-	if cost_val < (health - cost_val + 1):
+	if health_after_cast >= min_health:
 		check = true
 	return check
 
@@ -106,6 +123,8 @@ func build_tower(tower_name:String) -> void:
 	if check_build_area_empty():
 		if tower_name == "cannon":
 			place_cannon()
+		if tower_name == "statue":
+			place_statue()
 	else:
 		print("Cannot build cannon!") # Player can't see this  message
 
@@ -126,6 +145,18 @@ func place_cannon() -> void:
 		print("Cannon not placed! (not enough health)") # Player can't see this message
 
 
+func place_statue() -> void:
+	# Make an instance of statue
+	var inst_statue = res_statue.instantiate()
+	var build_cost = inst_statue.BUILD_COST
+	if check_casting_cost(build_cost):
+		inst_statue.global_position = $BuildArea/BuildCollision.global_position
+		level_node.add_child.call_deferred(inst_statue)
+		damage_health(build_cost)
+	else:
+		inst_statue.queue_free()
+		print("cannot place statue! (not enough health)")
+
 func shoot():
 	var instance = projectile.instantiate()
 	instance.dir = facing_rot
@@ -140,6 +171,13 @@ func melee_damage(target_object):
 		print("Hit! :: " + str(target_object))
 		target_object.HEALTH -= base_melee_damage
 
+func next_tower():
+	if ((len(towers_list) - 1) == selected_tower):
+		selected_tower = 0
+	else:
+		selected_tower += 1
+	print("Switched towers to: " + towers_list[selected_tower])
+
 
 func next_weapon():
 	if ((len(weapons_list) - 1) == player_weapon):
@@ -151,6 +189,7 @@ func next_weapon():
 func damage_health(damage):
 	health -= damage
 	print("HP: " + str(health))
+	print("MAX_HEALTH: " + str(MAX_HEALTH))
 	if health <= 0:
 		# Game over screen will be loaded here.
 		print("GAME OVER!")
@@ -160,6 +199,7 @@ func damage_health(damage):
 func _physics_process(_delta: float) -> void:
 	# Apply input handling
 	handle_input()
+	apply_buffs_from_statues()
 	
 	# Apply movement direction to MeleeWeapon rotation based on facing_rot
 	$MeleeWeapon.rotation = facing_rot

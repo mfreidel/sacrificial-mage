@@ -12,7 +12,7 @@ class_name TowerNode
 # Exported vars
 @export var MAX_HEALTH = 20.0
 @export var MAX_LEVEL : int = 5
-@export var BUILD_COST = 5.0
+@export var DEFAULT_BUILD_COST = 5.0
 
 # All towers will have both health points and levels
 var health = MAX_HEALTH
