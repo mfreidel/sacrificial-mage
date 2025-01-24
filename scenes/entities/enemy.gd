@@ -6,16 +6,33 @@ extends CharacterBody2D
 @export var BASE_DAMAGE = 1.0
 @export var PATH_TARGET: Node2D
 
-#@onready var level_node = get_tree().get_root().get_node("Level")
+# Vars for path navigation
 @onready var nav_agent = $NavigationAgent2D
 @onready var next_agent_path_pos
+
+# Vars for dropping powerups
+@onready var level_node = get_tree().get_root().get_node("Level")
+@onready var res_heath_powup = preload("res://scenes/entities/health_powerup.tscn")
 
 var can_attack = false
 var attack_target : Node2D
 
+func drop_powerup(powup_name: String) -> void:
+	if powup_name == "health":
+		var inst_heath_powup = res_heath_powup.instantiate()
+		inst_heath_powup.position = global_position
+		level_node.add_child.call_deferred(inst_heath_powup)
+
+
+func death() -> void:
+	drop_powerup("health")
+	queue_free()
+
+
 func damage_health(damage):
 	HEALTH -= damage
-	
+
+
 func face_left() -> void:
 	$EnemySprite.flip_h = true
 	$Attack/AttackSprite.flip_h = true
@@ -54,7 +71,7 @@ func single_attack(attack_body):
 
 func _physics_process(_delta) -> void:
 	if HEALTH <= 0:
-		queue_free()
+		death()
 	if PATH_TARGET && next_agent_path_pos:
 		var current_agent_pos = global_position
 		var move_direction = current_agent_pos.direction_to(next_agent_path_pos)
