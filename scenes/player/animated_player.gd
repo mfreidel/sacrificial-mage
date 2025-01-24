@@ -196,6 +196,18 @@ func damage_health(damage):
 		queue_free() # many errors
 
 
+func increase_health(heal_amt: float) -> void:
+	if !(health == MAX_HEALTH):
+		var new_health = health + heal_amt
+		if new_health > MAX_HEALTH:
+			health = MAX_HEALTH
+		else:
+			health = new_health
+		print("player.gd -- increase_health() -- Increased health to " + str(health))
+	else:
+		print("player.gd -- increase_health() -- Failed! Player already at max health")
+	
+
 func _physics_process(_delta: float) -> void:
 	# Apply input handling
 	handle_input()
