@@ -61,3 +61,8 @@ hframes = 4
 libraries = {
 "": SubResource("AnimationLibrary_13aa8")
 }
+
+[node name="DespawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

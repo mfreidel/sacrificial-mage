@@ -40,3 +40,4 @@ position = Vector2(269, 61)
 
 [node name="HealthPowerup" parent="." instance=ExtResource("8_h184v")]
 position = Vector2(337, 77)
+DESPAWN_TIME = 2.0

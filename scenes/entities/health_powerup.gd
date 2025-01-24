@@ -2,11 +2,14 @@ extends CharacterBody2D
 
 # Amount of health restored when picked up
 @export var POWERUP_VALUE = 1.0
+@export var DESPAWN_TIME = 7.0
 
 @onready var player_node = get_tree().get_first_node_in_group("player")
 
 func _ready() -> void:
 	$AnimationPlayer.play("rotate") # Animation only needs to be started.
+	$DespawnTimer.wait_time = DESPAWN_TIME
+	$DespawnTimer.start()
 
 func _physics_process(_delta) -> void:
 	# Disable the collision shape if player is at maximum health
@@ -26,3 +29,7 @@ func _physics_process(_delta) -> void:
 		else:
 			print("health_powerup.gd -- BUG! :: Non-player collision with pickup!")
 		queue_free()
+
+
+func _on_despawn_timer_timeout() -> void:
+	queue_free()
