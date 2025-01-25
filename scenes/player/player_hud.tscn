@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://blr0j5erf181a"]
+
+[node name="PlayerHUD" type="CanvasLayer"]
+
+[node name="MainPanel" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(250, 32)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_right = 125.0
+offset_bottom = 32.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainPanel"]
+layout_mode = 2
+alignment = 1
+
+[node name="WeaponSlot" type="TextureRect" parent="MainPanel/HBoxContainer"]
+layout_mode = 2
+
+[node name="HealthImage" type="TextureRect" parent="MainPanel/HBoxContainer"]
+layout_mode = 2
+
+[node name="HealthXLabel" type="Label" parent="MainPanel/HBoxContainer"]
+layout_mode = 2
+text = "x"
+
+[node name="HealthStatus" type="Label" parent="MainPanel/HBoxContainer"]
+layout_mode = 2
+
+[node name="HealthSlashLabel" type="Label" parent="MainPanel/HBoxContainer"]
+layout_mode = 2
+text = "/"
+
+[node name="MaxHealthStatus" type="Label" parent="MainPanel/HBoxContainer"]
+layout_mode = 2
+
+[node name="StatsRegion" type="VBoxContainer" parent="MainPanel/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ScoreContainer" type="HBoxContainer" parent="MainPanel/HBoxContainer/StatsRegion"]
+layout_mode = 2
+alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="MainPanel/HBoxContainer/StatsRegion/ScoreContainer"]
+layout_mode = 2
+
+[node name="ScoreStatus" type="Label" parent="MainPanel/HBoxContainer/StatsRegion/ScoreContainer"]
+layout_mode = 2
+
+[node name="CoinImage" type="TextureRect" parent="MainPanel/HBoxContainer"]
+layout_mode = 2
+
+[node name="BuildSlot" type="TextureRect" parent="MainPanel/HBoxContainer"]
+layout_mode = 2
