@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://blr0j5erf181a"]
+[gd_scene load_steps=2 format=3 uid="uid://blr0j5erf181a"]
+
+[ext_resource type="Texture2D" uid="uid://ccbaracktv2pt" path="res://assets/ui_images/heart.png" id="1_dy3a1"]
 
 [node name="PlayerHUD" type="CanvasLayer"]
 
@@ -19,22 +21,33 @@ alignment = 1
 [node name="WeaponSlot" type="TextureRect" parent="MainPanel/HBoxContainer"]
 layout_mode = 2
 
-[node name="HealthImage" type="TextureRect" parent="MainPanel/HBoxContainer"]
+[node name="HealthContainer" type="HBoxContainer" parent="MainPanel/HBoxContainer"]
 layout_mode = 2
 
-[node name="HealthXLabel" type="Label" parent="MainPanel/HBoxContainer"]
+[node name="HealthImgContainer" type="VBoxContainer" parent="MainPanel/HBoxContainer/HealthContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HealthImage" type="TextureRect" parent="MainPanel/HBoxContainer/HealthContainer/HealthImgContainer"]
+layout_mode = 2
+texture = ExtResource("1_dy3a1")
+stretch_mode = 2
+
+[node name="HealthXLabel" type="Label" parent="MainPanel/HBoxContainer/HealthContainer"]
 layout_mode = 2
 text = "x"
 
-[node name="HealthStatus" type="Label" parent="MainPanel/HBoxContainer"]
+[node name="HealthStatus" type="Label" parent="MainPanel/HBoxContainer/HealthContainer"]
 layout_mode = 2
+text = "0"
 
-[node name="HealthSlashLabel" type="Label" parent="MainPanel/HBoxContainer"]
+[node name="HealthSlashLabel" type="Label" parent="MainPanel/HBoxContainer/HealthContainer"]
 layout_mode = 2
 text = "/"
 
-[node name="MaxHealthStatus" type="Label" parent="MainPanel/HBoxContainer"]
+[node name="MaxHealthStatus" type="Label" parent="MainPanel/HBoxContainer/HealthContainer"]
 layout_mode = 2
+text = "0"
 
 [node name="StatsRegion" type="VBoxContainer" parent="MainPanel/HBoxContainer"]
 layout_mode = 2
@@ -46,9 +59,11 @@ alignment = 1
 
 [node name="ScoreLabel" type="Label" parent="MainPanel/HBoxContainer/StatsRegion/ScoreContainer"]
 layout_mode = 2
+text = "Score:"
 
 [node name="ScoreStatus" type="Label" parent="MainPanel/HBoxContainer/StatsRegion/ScoreContainer"]
 layout_mode = 2
+text = "0"
 
 [node name="CoinImage" type="TextureRect" parent="MainPanel/HBoxContainer"]
 layout_mode = 2
