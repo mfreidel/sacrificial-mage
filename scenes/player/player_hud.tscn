@@ -23,8 +23,11 @@ layout_mode = 2
 alignment = 1
 
 [node name="WeaponImage" type="TextureRect" parent="MainPanel/MainContainer"]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 tooltip_text = "\"Q\" to switch"
+expand_mode = 4
+stretch_mode = 5
 
 [node name="HealthContainer" type="HBoxContainer" parent="MainPanel/MainContainer"]
 layout_mode = 2
@@ -74,5 +77,8 @@ text = "0"
 layout_mode = 2
 
 [node name="BuildImage" type="TextureRect" parent="MainPanel/MainContainer"]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 tooltip_text = "\"Z\" to switch"
+expand_mode = 4
+stretch_mode = 5
