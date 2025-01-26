@@ -1,6 +1,14 @@
 extends CanvasLayer
 ## Base-level script for PlayerHUD Node.
 
+# Labels in scene tree to update
+@onready var health_status_label = $MainPanel/MainContainer/HealthContainer/HealthStatus
+@onready var max_health_status_label = $MainPanel/MainContainer/HealthContainer/MaxHealthStatus
+
+# Images in scene tree to update
+@onready var weapon_image = $MainPanel/MainContainer/WeaponImage
+@onready var build_image = $MainPanel/MainContainer/BuildImage
+
 # Load weapon images
 @onready var res_sword_img = load("res://assets/ui_images/long_sword1.png")
 @onready var res_arrow_img = load("res://assets/sprites/arrow.png")
@@ -45,27 +53,29 @@ func get_player_selected_weapon():
 func get_player_score():
 	pass
 
+
 func update_labels() -> void:
 	var player_health = get_player_health()
 	var player_max_health = get_player_max_health()
-	$MainPanel/MainContainer/HealthContainer/HealthStatus.text = str(player_health)
-	$MainPanel/MainContainer/HealthContainer/MaxHealthStatus.text = str(player_max_health)
+	health_status_label.text = str(player_health)
+	max_health_status_label.text = str(player_max_health)
 
 
 func update_images() -> void:
 	var selected_weapon = get_player_selected_weapon()
 	var selected_tower = get_player_selected_tower()
-	
+	# Weapon Images
 	if selected_weapon == "melee":
-		$MainPanel/MainContainer/WeaponImage.texture = res_sword_img
+		weapon_image.texture = res_sword_img
 	elif selected_weapon == "ranged":
-		$MainPanel/MainContainer/WeaponImage.texture = res_arrow_img
+		weapon_image.texture = res_arrow_img
 	else:
 		print("player_hud.gd -- Invalid weapon selection: " + str(selected_weapon))
-
+	
+	# Tower Images
 	if selected_tower == "cannon":
-		$MainPanel/MainContainer/BuildImage.texture = res_cannon_img
+		build_image.texture = res_cannon_img
 	elif selected_tower == "statue":
-		$MainPanel/MainContainer/BuildImage.texture = res_statue_img
+		build_image.texture = res_statue_img
 	else:
 		print("player_hud.gd -- Invalid tower selection: " + str(selected_tower))
