@@ -25,6 +25,7 @@ player="Group for the player object"
 statue_towers="StatueTower nodes will add themselves to this group."
 enemy="Group for enemies"
 enemy_spawners="All enemy spawner nodes"
+all_towers="All types of towers go in this group."
 
 [input]
 

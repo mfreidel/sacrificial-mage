@@ -9,6 +9,7 @@ func respawn_player() -> void:
 
 func restart_level() -> void:
 	get_tree().call_group("enemy", "queue_free")
+	get_tree().call_group("all_towers", "queue_free")
 	respawn_player()
 	$WaveController.reset_controller()
 	
