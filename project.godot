@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="PJ16 Testbed Game"
+config/name="Sacrificial Mage"
+config/description="Made for PirateJam16"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
