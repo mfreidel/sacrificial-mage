@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://bqv1xnucopie0" path="res://scenes/levels/overworld_tileset.tres" id="2_fk01n"]
 [ext_resource type="Script" path="res://scenes/levels/ground_layer.gd" id="3_1vocx"]
 [ext_resource type="PackedScene" uid="uid://cgo6l0386rbuo" path="res://scenes/player/animated_player.tscn" id="4_g1l6l"]
-[ext_resource type="PackedScene" uid="uid://djysclb75ysnk" path="res://scenes/entities/enemy_spawner.tscn" id="5_d4rnr"]
+[ext_resource type="PackedScene" uid="uid://djysclb75ysnk" path="res://scenes/levels/spawners/enemy_spawner.tscn" id="5_d4rnr"]
 [ext_resource type="PackedScene" uid="uid://c1vqlbubumh1t" path="res://scenes/levels/wave_ctrl/wave_ctrl.tscn" id="6_taiap"]
 
 [node name="Level" type="Node2D"]
