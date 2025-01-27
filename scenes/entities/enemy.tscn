@@ -71,7 +71,7 @@ _data = {
 "attack_animation": SubResource("Animation_ftj4e")
 }
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 64
 collision_mask = 75
 script = ExtResource("1_jinkt")

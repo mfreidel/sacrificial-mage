@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1vqlbubumh1t"]
+
+[ext_resource type="Script" path="res://scenes/levels/wave_ctrl/wave_ctrl.gd" id="1_xl300"]
+
+[node name="WaveController" type="Node"]
+script = ExtResource("1_xl300")
+
+[node name="WaveTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="InterimTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]
+[connection signal="timeout" from="InterimTimer" to="." method="_on_interim_timer_timeout"]

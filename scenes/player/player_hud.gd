@@ -17,15 +17,18 @@ extends CanvasLayer
 @onready var res_cannon_img = load("res://assets/ui_images/cannon_single.png")
 @onready var res_statue_img = load("res://assets/sprites/statue.png")
 
-# Player node
+# Nodes from scene tree
 @onready var player_node = get_tree().get_first_node_in_group("player")
+@onready var level_node = get_tree().get_root().get_node("Level")
+
 
 # built-in, runs when node enters scene tree
 func _ready() -> void:
-	pass
+	$GameOverPanel.visible = false
+	$GameOverPanel.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 
 # built-in, runs every frame
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	update_images()
 	update_labels()
 
@@ -79,3 +82,24 @@ func update_images() -> void:
 		build_image.texture = res_statue_img
 	else:
 		print("player_hud.gd -- Invalid tower selection: " + str(selected_tower))
+
+
+func _on_restart_button_pressed() -> void:
+	get_tree().paused = false
+	$GameOverPanel.visible = false
+	level_node.restart_level()
+	
+
+
+func _on_menu_button_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://scenes/start_menu/start_menu.tscn")
+
+
+func _on_quit_button_pressed() -> void:
+	get_tree().quit()
+
+
+func _on_player_death() -> void:
+	get_tree().paused = true
+	$GameOverPanel.visible = true

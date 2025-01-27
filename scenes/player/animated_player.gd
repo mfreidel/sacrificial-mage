@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal player_death
+
 # exported vars
 @export var DEFAULT_MAX_HEALTH = 20.0
 
@@ -38,6 +40,9 @@ var facing_rot = 3.14159
 # Instead, this value gets updated during movement handling to determine 
 # which direction the sprite animation is facing
 
+func set_new_spawn_vars() -> void:
+	MAX_HEALTH = DEFAULT_MAX_HEALTH
+	health = MAX_HEALTH
 
 func _ready():
 	pass
@@ -190,10 +195,10 @@ func damage_health(damage):
 	health -= damage
 	print("HP: " + str(health))
 	print("MAX_HEALTH: " + str(MAX_HEALTH))
-	if health <= 0:
-		# Game over screen will be loaded here.
-		print("GAME OVER!")
-		queue_free() # many errors
+
+
+func death() -> void:
+	player_death.emit()
 
 
 func increase_health(heal_amt: float) -> void:
@@ -209,6 +214,10 @@ func increase_health(heal_amt: float) -> void:
 	
 
 func _physics_process(_delta: float) -> void:
+	# Are you dead yet?
+	if health <= 0:
+		death()
+	
 	# Apply input handling
 	handle_input()
 	apply_buffs_from_statues()

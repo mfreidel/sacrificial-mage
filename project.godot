@@ -23,6 +23,9 @@ InteractionManager="*res://scenes/interaction/interaction_manager.tscn"
 
 player="Group for the player object"
 statue_towers="StatueTower nodes will add themselves to this group."
+enemy="Group for enemies"
+enemy_spawners="All enemy spawner nodes"
+all_towers="All types of towers go in this group."
 
 [input]
 
@@ -87,3 +90,4 @@ switch_tower={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.129558, 0.129558, 0.129558, 1)
