@@ -20,9 +20,13 @@ extends CanvasLayer
 # Player node
 @onready var player_node = get_tree().get_first_node_in_group("player")
 
+# Game over panel vars
+
+
 # built-in, runs when node enters scene tree
 func _ready() -> void:
 	$GameOverPanel.visible = false
+	$GameOverPanel.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 
 # built-in, runs every frame
 func _process(_delta: float) -> void:
@@ -86,8 +90,14 @@ func _on_restart_button_pressed() -> void:
 
 
 func _on_menu_button_pressed() -> void:
+	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/start_menu/start_menu.tscn")
 
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_player_death() -> void:
+	get_tree().paused = true
+	$GameOverPanel.visible = true
