@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://8w2881e08cmo"]
 
-[ext_resource type="FontFile" uid="uid://mb1jol24xvf8" path="res://assets/fonts/connection_ii/ConnectionII.otf" id="1_bgvda"]
+[ext_resource type="FontFile" uid="uid://mb1jol24xvf8" path="res://assets/fonts/connection_ii/ConnectionII.otf" id="1_3ubdf"]
 
 [resource]
-default_font = ExtResource("1_bgvda")
+default_font = ExtResource("1_3ubdf")
 default_font_size = 20
