@@ -40,6 +40,9 @@ var facing_rot = 3.14159
 # Instead, this value gets updated during movement handling to determine 
 # which direction the sprite animation is facing
 
+func set_new_spawn_vars() -> void:
+	MAX_HEALTH = DEFAULT_MAX_HEALTH
+	health = MAX_HEALTH
 
 func _ready():
 	pass

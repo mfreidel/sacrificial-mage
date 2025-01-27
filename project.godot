@@ -23,6 +23,8 @@ InteractionManager="*res://scenes/interaction/interaction_manager.tscn"
 
 player="Group for the player object"
 statue_towers="StatueTower nodes will add themselves to this group."
+enemy="Group for enemies"
+enemy_spawners="All enemy spawner nodes"
 
 [input]
 

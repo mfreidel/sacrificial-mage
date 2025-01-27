@@ -17,10 +17,9 @@ extends CanvasLayer
 @onready var res_cannon_img = load("res://assets/ui_images/cannon_single.png")
 @onready var res_statue_img = load("res://assets/sprites/statue.png")
 
-# Player node
+# Nodes from scene tree
 @onready var player_node = get_tree().get_first_node_in_group("player")
-
-# Game over panel vars
+@onready var level_node = get_tree().get_root().get_node("Level")
 
 
 # built-in, runs when node enters scene tree
@@ -86,7 +85,10 @@ func update_images() -> void:
 
 
 func _on_restart_button_pressed() -> void:
-	pass # Replace with function body.
+	get_tree().paused = false
+	$GameOverPanel.visible = false
+	level_node.restart_level()
+	
 
 
 func _on_menu_button_pressed() -> void:
