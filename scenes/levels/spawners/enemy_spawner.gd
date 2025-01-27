@@ -44,7 +44,7 @@ func spawn_enemy() -> void:
 	inst_enemy.PATH_TARGET = get_parent().get_node("AnimatedPlayer")
 	get_parent().get_node("EnemyContainer").add_child(inst_enemy)
 	spawn_count += 1
-	emit_signal("enemy_spawned")
+	enemy_spawned.emit()
 
 func _on_spawn_timer_timeout() -> void:
 	if spawn_count >= total_spawns:
