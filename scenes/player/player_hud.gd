@@ -22,10 +22,10 @@ extends CanvasLayer
 
 # built-in, runs when node enters scene tree
 func _ready() -> void:
-	pass
+	$GameOverPanel.visible = false
 
 # built-in, runs every frame
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	update_images()
 	update_labels()
 
@@ -79,3 +79,15 @@ func update_images() -> void:
 		build_image.texture = res_statue_img
 	else:
 		print("player_hud.gd -- Invalid tower selection: " + str(selected_tower))
+
+
+func _on_restart_button_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_menu_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/start_menu/start_menu.tscn")
+
+
+func _on_quit_button_pressed() -> void:
+	get_tree().quit()

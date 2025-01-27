@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://blr0j5erf181a"]
+[gd_scene load_steps=6 format=3 uid="uid://blr0j5erf181a"]
 
 [ext_resource type="Script" path="res://scenes/player/player_hud.gd" id="1_6qnt4"]
 [ext_resource type="Texture2D" uid="uid://ccbaracktv2pt" path="res://assets/ui_images/heart.png" id="1_dy3a1"]
 [ext_resource type="Theme" uid="uid://8w2881e08cmo" path="res://scenes/start_menu/menu_theme.tres" id="2_syi43"]
+[ext_resource type="FontFile" uid="uid://mb1jol24xvf8" path="res://assets/fonts/connection_ii/ConnectionII.otf" id="4_4pbpy"]
+
+[sub_resource type="Theme" id="Theme_331pq"]
+default_font = ExtResource("4_4pbpy")
+default_font_size = 30
 
 [node name="PlayerHUD" type="CanvasLayer"]
 script = ExtResource("1_6qnt4")
@@ -17,6 +22,7 @@ offset_right = 125.0
 offset_bottom = 32.0
 grow_horizontal = 2
 theme = ExtResource("2_syi43")
+theme_type_variation = &"Normal"
 
 [node name="MainContainer" type="HBoxContainer" parent="MainPanel"]
 layout_mode = 2
@@ -82,3 +88,55 @@ layout_mode = 2
 tooltip_text = "\"Z\" to switch"
 expand_mode = 4
 stretch_mode = 5
+
+[node name="GameOverPanel" type="Panel" parent="."]
+custom_minimum_size = Vector2(256, 256)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_331pq")
+theme_type_variation = &"VeryLarge"
+
+[node name="Label" type="Label" parent="GameOverPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -57.0
+offset_right = 57.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 90
+text = "Game Over!"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -83.5
+offset_top = -61.0
+offset_right = 83.5
+offset_bottom = 61.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RestartButton" type="Button" parent="GameOverPanel/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="MenuButton" type="Button" parent="GameOverPanel/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="QuitButton" type="Button" parent="GameOverPanel/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="GameOverPanel/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="GameOverPanel/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="GameOverPanel/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
