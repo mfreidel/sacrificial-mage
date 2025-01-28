@@ -134,10 +134,5 @@ text = "Restart"
 layout_mode = 2
 text = "Main Menu"
 
-[node name="QuitButton" type="Button" parent="GameOverPanel/VBoxContainer"]
-layout_mode = 2
-text = "Quit"
-
 [connection signal="pressed" from="GameOverPanel/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="GameOverPanel/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
-[connection signal="pressed" from="GameOverPanel/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
