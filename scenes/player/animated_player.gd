@@ -242,3 +242,7 @@ func _on_build_area_body_shape_exited(_body_rid: RID, _body: Node2D, _body_shape
 	build_area_obstacles -= 1
 	if build_area_obstacles == 0:
 		print("Build area has been freed of obstacles")
+
+
+func _on_score_controller_score_increased(new_score: int) -> void:
+	$Camera2D/PlayerHUD._update_score_label(new_score)

@@ -53,8 +53,10 @@ func get_player_selected_weapon():
 	return list[selection]
 
 
-func get_player_score():
-	pass
+## The score label gets updated via a ScoreController 'score_increased' signal
+## which is attached to animated_player.gd
+func _update_score_label(new_score:int):
+	$MainPanel/MainContainer/StatsRegion/ScoreContainer/ScoreStatus.text = str(new_score)
 
 
 func update_labels() -> void:
