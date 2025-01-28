@@ -102,4 +102,5 @@ func _on_menu_button_pressed() -> void:
 
 func _on_player_death() -> void:
 	get_tree().paused = true
+	$GameOverPanel/VBoxContainer/HBoxContainer/FinalScore.text = str(level_node._get_current_score())
 	$GameOverPanel.visible = true

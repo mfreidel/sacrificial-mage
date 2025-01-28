@@ -1,7 +1,6 @@
 extends Node2D
 
 func _ready() -> void:
-	#_add_points_to_score(10)
 	restart_level()
 
 func respawn_player() -> void:
@@ -18,3 +17,6 @@ func restart_level() -> void:
 
 func _add_points_to_score(incr_val:int) -> void:
 	$ScoreController._increase_score(incr_val)
+
+func _get_current_score():
+	return $ScoreController.current_score
