@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkqmkyb8u1oaj"]
+
+[ext_resource type="Script" path="res://scenes/levels/score_ctrl/score_ctrl.gd" id="1_0c5pq"]
+
+[node name="ScoreController" type="Node"]
+script = ExtResource("1_0c5pq")
