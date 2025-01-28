@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://87nuxy2ibkun"]
+[gd_scene load_steps=8 format=4 uid="uid://87nuxy2ibkun"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_abwk0"]
 [ext_resource type="TileSet" uid="uid://bqv1xnucopie0" path="res://scenes/levels/overworld_tileset.tres" id="2_fk01n"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cgo6l0386rbuo" path="res://scenes/player/animated_player.tscn" id="4_g1l6l"]
 [ext_resource type="PackedScene" uid="uid://djysclb75ysnk" path="res://scenes/levels/spawners/enemy_spawner.tscn" id="5_d4rnr"]
 [ext_resource type="PackedScene" uid="uid://c1vqlbubumh1t" path="res://scenes/levels/wave_ctrl/wave_ctrl.tscn" id="6_taiap"]
+[ext_resource type="PackedScene" uid="uid://dkqmkyb8u1oaj" path="res://scenes/levels/score_ctrl/score_ctrl.tscn" id="7_ds0hy"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_abwk0")
@@ -35,3 +36,7 @@ position = Vector2(108, 79)
 [node name="WaveController" parent="." instance=ExtResource("6_taiap")]
 WAVE_SECONDS = 30.0
 INTERIM_SECONDS = 5.0
+
+[node name="ScoreController" parent="." instance=ExtResource("7_ds0hy")]
+
+[connection signal="score_increased" from="ScoreController" to="AnimatedPlayer" method="_on_score_controller_score_increased"]

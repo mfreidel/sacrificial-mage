@@ -3,6 +3,7 @@ extends CharacterBody2D
 # Amount of health restored when picked up
 @export var POWERUP_VALUE = 1.0
 @export var DESPAWN_TIME = 7.0
+@export var SCORE_VALUE: int = 1
 
 @onready var player_node = get_tree().get_first_node_in_group("player")
 
@@ -25,6 +26,7 @@ func _physics_process(_delta) -> void:
 		var col_target = get_last_slide_collision().get_collider()
 		if col_target.is_in_group("player"): 
 			player_node.increase_health(POWERUP_VALUE)
+			get_parent()._add_points_to_score(SCORE_VALUE)
 			print("health_powerup.gd -- Pickup collected!")
 		else:
 			print("health_powerup.gd -- BUG! :: Non-player collision with pickup!")
