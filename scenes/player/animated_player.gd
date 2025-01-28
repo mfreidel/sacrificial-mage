@@ -5,6 +5,7 @@ signal player_death
 # exported vars
 @export var DEFAULT_MAX_HEALTH = 20.0
 @export var FIREBALL_COST = 1
+@export var FIREBALL_DAMAGE = 3
 
 # Set health vars based on DEFAULT_MAX_HEALTH
 @onready var MAX_HEALTH = DEFAULT_MAX_HEALTH
@@ -93,7 +94,7 @@ func handle_input():
 	if Input.is_action_just_pressed("attack"):
 		if (weapons_list[player_weapon] == "fireball"):
 			if apply_spell_damage(FIREBALL_COST):
-				shoot()
+				shoot(FIREBALL_DAMAGE)
 		elif (weapons_list[player_weapon] == "melee"):
 			# Call movement animation. Animation will use a signal to call damage code
 			$MeleeWeapon/MeleeAnimationTree.get("parameters/playback").travel("swing")
@@ -180,8 +181,9 @@ func place_statue() -> void:
 # Attacking
 
 ## This only handles spawning in the projectile
-func shoot() -> void:
+func shoot(dmg_val:float) -> void:
 	var instance = res_projectile.instantiate()
+	instance.DAMAGE = dmg_val
 	instance.dir = facing_rot
 	instance.spawnPos = global_position
 	instance.spawnRot = facing_rot
