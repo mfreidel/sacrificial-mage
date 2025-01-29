@@ -1,8 +1,8 @@
 extends TowerNode
 
 
-@onready var projectile = load("res://scenes/entities/projectile.tscn")
-@onready var cball_image = load("res://assets/sprites/cannonball.png")
+@onready var projectile = preload("res://scenes/entities/projectile.tscn")
+@onready var cball_image = preload("res://assets/sprites/cannonball.png")
 
 # Make interaction area accessible here
 @onready var interaction_area: InteractionArea = $InteractionArea

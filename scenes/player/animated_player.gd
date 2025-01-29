@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 signal player_death
+signal attack_pressed
 
 # exported vars
 @export var DEFAULT_MAX_HEALTH = 20.0
@@ -92,12 +93,7 @@ func handle_input():
 	
 	# Attack input
 	if Input.is_action_just_pressed("attack"):
-		if (weapons_list[player_weapon] == "fireball"):
-			if apply_spell_damage(FIREBALL_COST):
-				shoot(FIREBALL_DAMAGE)
-		elif (weapons_list[player_weapon] == "melee"):
-			# Call movement animation. Animation will use a signal to call damage code
-			$MeleeWeapon/MeleeAnimationTree.get("parameters/playback").travel("swing")
+		attack_pressed.emit()
 	
 	# Build input is combined with verifing build area empty  
 	if Input.is_action_just_pressed("build"):
@@ -115,6 +111,15 @@ func handle_input():
 		$AnimationTree.set("parameters/Walk/blend_position", move_direction)
 	# 
 	# END OF handle_input() function
+
+func handle_attack() -> void:
+	if (weapons_list[player_weapon] == "fireball"):
+		if apply_spell_damage(FIREBALL_COST):
+			shoot(FIREBALL_DAMAGE)
+	elif (weapons_list[player_weapon] == "melee"):
+		# Call movement animation. Animation will use a signal to call damage code
+		$MeleeWeapon/MeleeAnimationTree.get("parameters/playback").travel("swing")
+
 
 func set_new_spawn_vars() -> void:
 	MAX_HEALTH = DEFAULT_MAX_HEALTH
@@ -279,3 +284,7 @@ func _on_build_area_body_shape_exited(_body_rid: RID, _body: Node2D, _body_shape
 
 func _on_score_controller_score_increased(new_score: int) -> void:
 	$Camera2D/PlayerHUD._update_score_label(new_score)
+
+
+func _on_attack_pressed() -> void:
+	handle_attack()
