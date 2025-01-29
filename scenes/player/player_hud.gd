@@ -11,7 +11,7 @@ extends CanvasLayer
 
 # Load weapon images
 @onready var res_sword_img = load("res://assets/ui_images/long_sword1.png")
-@onready var res_arrow_img = load("res://assets/sprites/arrow.png")
+@onready var res_fball_img = load("res://assets/sprites/fire_ball.png")
 
 # Load structure images
 @onready var res_cannon_img = load("res://assets/ui_images/cannon_single.png")
@@ -72,8 +72,8 @@ func update_images() -> void:
 	# Weapon Images
 	if selected_weapon == "melee":
 		weapon_image.texture = res_sword_img
-	elif selected_weapon == "ranged":
-		weapon_image.texture = res_arrow_img
+	elif selected_weapon == "fireball":
+		weapon_image.texture = res_fball_img
 	else:
 		print("player_hud.gd -- Invalid weapon selection: " + str(selected_weapon))
 	
