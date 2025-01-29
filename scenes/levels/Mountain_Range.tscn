@@ -64,3 +64,5 @@ WAVE_SECONDS = 60.0
 INTERIM_SECONDS = 10.0
 
 [node name="ScoreController" parent="." instance=ExtResource("8_rx144")]
+
+[connection signal="score_increased" from="ScoreController" to="AnimatedPlayer" method="_on_score_controller_score_increased"]
