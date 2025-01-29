@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cq4w3svyhcdta"]
 
 [ext_resource type="FontFile" uid="uid://mb1jol24xvf8" path="res://assets/fonts/connection_ii/ConnectionII.otf" id="1_crtc2"]
-[ext_resource type="Script" path="res://scenes/towers/upgrade_menu.gd" id="2_0yfdv"]
+[ext_resource type="Script" path="res://scenes/towers/upgrades/upgrade_menu.gd" id="2_0yfdv"]
 
 [sub_resource type="Theme" id="Theme_8mu52"]
 default_font = ExtResource("1_crtc2")
@@ -19,9 +19,9 @@ script = ExtResource("2_0yfdv")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -91.0
+offset_left = 4.0
 offset_top = 4.0
-offset_right = 91.0
+offset_right = 186.0
 offset_bottom = 109.0
 grow_horizontal = 2
 
