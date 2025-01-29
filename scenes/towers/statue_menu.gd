@@ -38,7 +38,7 @@ func _on_menu_refresh_timeout() -> void:
 	# Update Labels
 	health_stat_label.text = str(tower.health)
 	health_max_label.text = str(tower.MAX_HEALTH)
-	lvl_stat_label.text = str(tower.level)
+	#lvl_stat_label.text = str(tower.level)
 	
 	# Update Buttons
 	if tower.health == tower.MAX_HEALTH:

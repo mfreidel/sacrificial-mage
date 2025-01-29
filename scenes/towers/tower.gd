@@ -11,12 +11,10 @@ class_name TowerNode
 
 # Exported vars
 @export var MAX_HEALTH = 20.0
-@export var MAX_LEVEL : int = 5
 @export var DEFAULT_BUILD_COST = 5.0
 
 # All towers will have both health points and levels
 var health = MAX_HEALTH
-var level = 1
 
 # Towers will need access to the level and player nodes
 @onready var level_node = get_tree().get_root().get_node("Level")

@@ -2,14 +2,29 @@ extends TowerNode
 
 @export var HEALTH_BUFF = 10.0
 
-
-@onready var projectile = load("res://scenes/entities/projectile.tscn")
-@onready var cball_image = load("res://assets/sprites/cannonball.png")
-
 # Make interaction area accessible here
 @onready var interaction_area: InteractionArea = $InteractionArea
 
 var BUILD_COST = 15.0
+
+# A nested dictionary structure hold upgrade details.
+var upgrades_table : Dictionary = {
+	"increase_buff": {
+		"text": "Increase max health buff.",
+		"upgrade_cost": 15.0,
+		"is_applied": false
+	},
+	"tower_health": {
+		"text": "Increase statue health.",
+		"upgrade_cost": 10.0,
+		"is_applied": false
+	},
+	"regen_area": {
+		"text": "Regenerate health when near statue.",
+		"upgrade_cost": 30.0,
+		"is_applied": false
+	}
+}
 
 
 
@@ -35,3 +50,8 @@ func _on_statue_menu_heal_pressed() -> void:
 	if new_health > MAX_HEALTH:
 		heal_cost = MAX_HEALTH - health # Don't charge more than what gets used.
 	heal_from_player(heal_cost)
+
+
+func _on_statue_menu_upgrade_pressed() -> void:
+	$StatueMenu.hide()
+	$UpgradeMenu.popup()
