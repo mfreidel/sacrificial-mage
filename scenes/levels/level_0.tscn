@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=4 uid="uid://otl8h0mx25cb"]
+[gd_scene load_steps=8 format=4 uid="uid://otl8h0mx25cb"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_7grsl"]
 [ext_resource type="TileSet" uid="uid://bqv1xnucopie0" path="res://scenes/levels/overworld_tileset.tres" id="1_18v3e"]
 [ext_resource type="PackedScene" uid="uid://cgo6l0386rbuo" path="res://scenes/player/animated_player.tscn" id="2_sugl3"]
 [ext_resource type="Script" path="res://scenes/levels/ground_layer.gd" id="2_xrp7p"]
 [ext_resource type="PackedScene" uid="uid://djysclb75ysnk" path="res://scenes/levels/spawners/enemy_spawner.tscn" id="4_366m8"]
+[ext_resource type="PackedScene" uid="uid://c1vqlbubumh1t" path="res://scenes/levels/wave_ctrl/wave_ctrl.tscn" id="6_s55cx"]
+[ext_resource type="PackedScene" uid="uid://dkqmkyb8u1oaj" path="res://scenes/levels/score_ctrl/score_ctrl.tscn" id="7_3jmxe"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_7grsl")
@@ -29,3 +31,9 @@ collision_enabled = false
 position = Vector2(27, 27)
 
 [node name="PlayerRespawn" type="Marker2D" parent="."]
+
+[node name="WaveController" parent="." instance=ExtResource("6_s55cx")]
+
+[node name="ScoreController" parent="." instance=ExtResource("7_3jmxe")]
+
+[connection signal="score_increased" from="ScoreController" to="AnimatedPlayer" method="_on_score_controller_score_increased"]
