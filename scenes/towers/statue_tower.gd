@@ -55,3 +55,7 @@ func _on_statue_menu_heal_pressed() -> void:
 func _on_statue_menu_upgrade_pressed() -> void:
 	$StatueMenu.hide()
 	$UpgradeMenu.popup()
+
+
+func _on_upgrade_menu_apply_upgrades(names_list: Array) -> void:
+	print("statue_tower.gd -- Received upgrade signal from menu containing: " + str(names_list))

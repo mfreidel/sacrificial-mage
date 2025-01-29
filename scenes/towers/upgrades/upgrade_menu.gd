@@ -1,5 +1,9 @@
 extends PopupPanel
 
+# Custom signal for telling the tower which upgrades to apply
+signal apply_upgrades(names_list:Array)
+var apply_names: Array = [] # intended to be sent in the signal
+
 # Parent node should always be a tower
 @onready var parent_tower = get_parent()
 @onready var tower_upgrades_table: Dictionary
@@ -23,18 +27,21 @@ func update_tower_upgrades_table():
 	return tower_upgrades_table
 
 func refresh_upgrade_options() -> void:
-	# Remove everything from OptionsContainer
+	# Reset the list of upgrades to apply
+	apply_names = []
+	$VBoxContainer/ApplyButton.disabled = false
+	# Remove anything in OptionsContainer
 	for item in opt_container.get_children():
 		item.queue_free()
 	# Add option buttons in OptionsContainer based on tower_upgrades_table
-	for name in update_tower_upgrades_table():
-		var entry = tower_upgrades_table[name]
+	for upgrade_name in update_tower_upgrades_table():
+		var entry = tower_upgrades_table[upgrade_name]
 		print("upgrade_menu.gd -- uprgrade entry found: " + str(entry))
 		var button_text = entry["text"] + " (Cost: " + str(entry["upgrade_cost"]) + ")"
 		#var button_text = "foobar"
 		var inst_option = res_option.instantiate()
 		inst_option.text = button_text
-		inst_option.upgrade_name = name
+		inst_option.upgrade_name = upgrade_name
 		inst_option.upgrade_cost  = entry["upgrade_cost"]
 		if entry["is_applied"]:
 			inst_option.button_pressed = true
@@ -43,3 +50,16 @@ func refresh_upgrade_options() -> void:
 
 func _on_about_to_popup() -> void:
 	refresh_upgrade_options()
+
+
+func _on_apply_button_pressed() -> void:
+	$VBoxContainer/ApplyButton.disabled = true
+	for upgrade_option in opt_container.get_children():
+		if !(upgrade_option.disabled):
+			if upgrade_option.button_pressed:
+				apply_names.append(upgrade_option.upgrade_name)
+	# done looping...
+	if !(apply_names == []):
+		apply_upgrades.emit(apply_names)
+	refresh_upgrade_options()
+		
