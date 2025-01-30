@@ -53,6 +53,7 @@ layout_mode = 2
 text = "0"
 
 [node name="LevelContainer" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="LevelLabel" type="Label" parent="VBoxContainer/LevelContainer"]

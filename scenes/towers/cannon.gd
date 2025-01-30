@@ -14,6 +14,7 @@ var upgrades_table : Dictionary = {
 	}
 }
 
+var auto_fire_enabled = false
 
 @onready var projectile = preload("res://scenes/entities/projectile.tscn")
 @onready var cball_image = preload("res://assets/sprites/cannonball.png")
@@ -79,7 +80,6 @@ func shoot():
 	instance.dir = facing_rot
 	instance.zdex = z_index - 1
 	instance.spawnPos = global_position
-	
 	if facing_rot == 0:
 		instance.spawnPos += vert_offset
 	instance.spawnRot = facing_rot
@@ -87,15 +87,6 @@ func shoot():
 	instance.get_node("ProjectileSprite").scale = Vector2(1, 1)
 	level_node.add_child.call_deferred(instance)
 
-
-## Unused function.
-func _toggle_firing_timer() -> void:
-	if $FiringTimer.is_stopped():
-		$FiringTimer.start()
-		print("cannon.gd -- FiringTimer started.")
-	else:
-		$FiringTimer.stop()
-		print("cannon.gd -- FiringTimer stopped.")
 
 func _on_firing_timer_timeout() -> void:
 	shoot()
@@ -136,3 +127,7 @@ func _on_upgrade_menu_apply_upgrades(names_list: Array) -> void:
 func _on_cannon_menu_upgrade_pressed() -> void:
 	$CannonMenu.hide()
 	$UpgradeMenu.popup()
+
+
+func _on_cannon_menu_fire_pressed() -> void:
+	shoot()
