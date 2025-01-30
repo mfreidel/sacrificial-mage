@@ -19,9 +19,9 @@ script = ExtResource("2_swjv4")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -91.0
+offset_left = 4.0
 offset_top = 4.0
-offset_right = 91.0
+offset_right = 186.0
 offset_bottom = 109.0
 grow_horizontal = 2
 

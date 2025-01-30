@@ -60,14 +60,14 @@ func _update_score_label(new_score:int):
 
 	$StatsRegion/ScoreContainer/ScoreStatus.text = str(new_score)
 
-func get_wave_count():
-	pass
 
 func update_labels() -> void:
 	var player_health = get_player_health()
 	var player_max_health = get_player_max_health()
+	var wave_count = level_node.get_wave_number()
 	health_status_label.text = str(player_health)
 	max_health_status_label.text = str(player_max_health)
+	wave_count_label.text = str(wave_count)
 
 
 func update_images() -> void:

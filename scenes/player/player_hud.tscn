@@ -26,9 +26,9 @@ theme = ExtResource("2_syi43")
 theme_type_variation = &"Normal"
 
 [node name="HealthContainer" type="HBoxContainer" parent="."]
-offset_left = 62.0
+offset_left = 22.0
 offset_top = 10.0
-offset_right = 312.0
+offset_right = 116.0
 offset_bottom = 42.0
 
 [node name="HealthImgContainer" type="VBoxContainer" parent="HealthContainer"]
@@ -42,45 +42,57 @@ stretch_mode = 3
 
 [node name="HealthXLabel" type="Label" parent="HealthContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_4pbpy")
 text = "x"
 
 [node name="HealthStatus" type="Label" parent="HealthContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_4pbpy")
 text = "0"
 
 [node name="HealthSlashLabel" type="Label" parent="HealthContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_4pbpy")
 text = "/"
 
 [node name="MaxHealthStatus" type="Label" parent="HealthContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_4pbpy")
 text = "0"
+
+[node name="AttackModeLabel" type="Label" parent="."]
+offset_left = 241.0
+offset_top = 18.0
+offset_right = 343.0
+offset_bottom = 41.0
+theme_override_fonts/font = ExtResource("4_4pbpy")
+text = "Attack Mode:"
 
 [node name="WeaponImage" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(32, 32)
-offset_left = 20.0
+offset_left = 345.0
 offset_top = 10.0
-offset_right = 52.0
+offset_right = 377.0
 offset_bottom = 42.0
 tooltip_text = "\"Q\" to switch"
 expand_mode = 4
 stretch_mode = 5
 
 [node name="Wave" type="Label" parent="."]
-offset_left = 510.0
-offset_top = 15.0
-offset_right = 557.0
-offset_bottom = 39.0
-size_flags_horizontal = 0
+offset_left = 816.0
+offset_top = 18.0
+offset_right = 864.0
+offset_bottom = 42.0
+theme_override_fonts/font = ExtResource("4_4pbpy")
 text = "Wave:"
 
 [node name="WaveCount" type="Label" parent="."]
-offset_left = 560.0
-offset_top = 15.0
-offset_right = 587.0
-offset_bottom = 44.0
-size_flags_horizontal = 0
+offset_left = 870.0
+offset_top = 18.0
+offset_right = 897.0
+offset_bottom = 47.0
 size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("4_4pbpy")
 text = "1"
 
 [node name="StatsRegion" type="VBoxContainer" parent="."]
@@ -96,10 +108,12 @@ alignment = 1
 
 [node name="ScoreLabel" type="Label" parent="StatsRegion/ScoreContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_4pbpy")
 text = "Score:"
 
 [node name="ScoreStatus" type="Label" parent="StatsRegion/ScoreContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_4pbpy")
 text = "0"
 
 [node name="CoinImage" type="TextureRect" parent="."]
@@ -110,13 +124,21 @@ offset_bottom = 42.0
 
 [node name="BuildImage" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(32, 32)
-offset_left = 761.0
+offset_left = 597.0
 offset_top = 10.0
-offset_right = 793.0
+offset_right = 629.0
 offset_bottom = 42.0
 tooltip_text = "\"Z\" to switch"
 expand_mode = 4
 stretch_mode = 5
+
+[node name="BuildLabel" type="Label" parent="."]
+offset_left = 536.0
+offset_top = 18.0
+offset_right = 583.0
+offset_bottom = 41.0
+theme_override_fonts/font = ExtResource("4_4pbpy")
+text = "Build:"
 
 [node name="GameOverPanel" type="Panel" parent="."]
 visible = false
