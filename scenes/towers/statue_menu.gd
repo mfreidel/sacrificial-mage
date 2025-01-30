@@ -2,6 +2,7 @@ extends PopupPanel
 
 signal heal_pressed
 signal upgrade_pressed
+signal destroy_pressed
 
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var tower = get_parent()
@@ -26,6 +27,10 @@ func _on_upgrade_button_pressed() -> void:
 	upgrade_pressed.emit()
 
 
+func _on_destroy_button_pressed() -> void:
+	destroy_pressed.emit()
+
+
 func _on_about_to_popup() -> void:
 	$MenuRefresh.start()
 
@@ -38,7 +43,7 @@ func _on_menu_refresh_timeout() -> void:
 	# Update Labels
 	health_stat_label.text = str(tower.health)
 	health_max_label.text = str(tower.MAX_HEALTH)
-	lvl_stat_label.text = str(tower.level)
+	#lvl_stat_label.text = str(tower.level)
 	
 	# Update Buttons
 	if tower.health == tower.MAX_HEALTH:

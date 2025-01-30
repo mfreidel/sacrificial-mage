@@ -134,22 +134,14 @@ func apply_buffs_from_statues() -> void:
 			MAX_HEALTH += statue.HEALTH_BUFF
 
 
-
-func check_build_area_empty():
-	var check = false
-	if build_area_obstacles == 0:
-		check = true
-	return check
-
-
 func build_tower(tower_name:String) -> void:
-	if check_build_area_empty():
+	if !($BuildArea.has_overlapping_bodies()):
 		if tower_name == "cannon":
 			place_cannon()
 		if tower_name == "statue":
 			place_statue()
 	else:
-		print("animated_player.gd -- Cannot build cannon!") # Player can't see this  message
+		print("animated_player.gd -- Cannot build due to obstruction") # Player can't see this  message
 
 
 func place_cannon() -> void:
@@ -270,16 +262,6 @@ func death() -> void:
 
 
 # Signals
-
-func _on_build_area_body_shape_entered(_body_rid: RID, _body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
-	build_area_obstacles += 1
-	
-
-
-func _on_build_area_body_shape_exited(_body_rid: RID, _body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
-	build_area_obstacles -= 1
-	if build_area_obstacles == 0:
-		print("animated_player.gd -- Build area has been freed of obstacles")
 
 
 func _on_score_controller_score_increased(new_score: int) -> void:
