@@ -79,6 +79,17 @@ script = ExtResource("1_jinkt")
 [node name="EnemySprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_wx3pp")
 
+[node name="HealthBar" type="ProgressBar" parent="."]
+modulate = Color(0.954458, 3.60981e-06, 1.34766e-06, 1)
+visibility_layer = 16
+offset_left = -6.0
+offset_top = -10.0
+offset_right = 134.0
+offset_bottom = 20.0
+scale = Vector2(0.1, 0.1)
+value = 100.0
+show_percentage = false
+
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
 position = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_qtvqp")
@@ -107,6 +118,7 @@ libraries = {
 }
 
 [node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.5
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
