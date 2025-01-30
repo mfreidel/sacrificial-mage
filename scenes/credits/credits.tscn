@@ -32,7 +32,7 @@ text = "Michael J. Freidel
 - Lead Game Designer
 - Project Manager
 - Game Programming
-- Art Director
+- Art & Animation Director
 
 
 Nik Schmidt
@@ -52,10 +52,10 @@ Will Ford
 Thanks
 =======
 - OpenGameArt.org
-- ArMM1998 for making Zelda-like tilesets and sprites on OGA
-- Clint Bellanger for maintaining Tiny Creatures on OGA
-- Chris Hammons for making Dungseon Crawl 32x32 Tiles on OGA
-"
+- ArMM1998A, Clint Bellanger, and Chris Hammons for their contributions on OGA
+- Jordan Gille for testing and feedback
+
+All art assets were released in the public domain, obtained from opengameart.org"
 fit_content = true
 
 [node name="Buttons" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
