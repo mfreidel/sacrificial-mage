@@ -20,7 +20,6 @@ script = ExtResource("3_1vocx")
 [node name="EnemyContainer" type="Node2D" parent="."]
 
 [node name="AnimatedPlayer" parent="." instance=ExtResource("4_g1l6l")]
-DEFAULT_MAX_HEALTH = 200.0
 
 [node name="ObstaclesLayer" type="TileMapLayer" parent="."]
 tile_set = ExtResource("2_fk01n")

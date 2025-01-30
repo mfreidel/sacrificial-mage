@@ -407,5 +407,3 @@ shape = SubResource("RectangleShape2D_it57e")
 [connection signal="attack_pressed" from="." to="." method="_on_attack_pressed"]
 [connection signal="player_death" from="." to="Camera2D/PlayerHUD" method="_on_player_death"]
 [connection signal="body_entered" from="MeleeWeapon" to="." method="melee_damage"]
-[connection signal="body_shape_entered" from="BuildArea" to="." method="_on_build_area_body_shape_entered"]
-[connection signal="body_shape_exited" from="BuildArea" to="." method="_on_build_area_body_shape_exited"]
