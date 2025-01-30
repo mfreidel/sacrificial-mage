@@ -4,6 +4,7 @@ extends CanvasLayer
 # Labels in scene tree to update
 @onready var health_status_label = $HealthContainer/HealthStatus
 @onready var max_health_status_label = $HealthContainer/MaxHealthStatus
+@onready var wave_count_label = $WaveCount
 
 # Images in scene tree to update
 @onready var weapon_image = $WeaponImage
@@ -56,6 +57,8 @@ func get_player_selected_weapon():
 func get_player_score():
 	pass
 
+func get_wave_count():
+	pass
 
 func update_labels() -> void:
 	var player_health = get_player_health()
