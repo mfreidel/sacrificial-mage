@@ -1,0 +1,175 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqtvx4wwpnsf2"]
+
+[ext_resource type="Script" path="res://scenes/controls/controls_screen.gd" id="1_je3xl"]
+[ext_resource type="FontFile" uid="uid://mb1jol24xvf8" path="res://assets/fonts/connection_ii/ConnectionII.otf" id="1_t784m"]
+
+[node name="ControlsScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_je3xl")
+
+[node name="title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -131.5
+offset_top = 10.0
+offset_right = 131.5
+offset_bottom = 75.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_t784m")
+theme_override_font_sizes/font_size = 64
+text = "Controls"
+horizontal_alignment = 1
+
+[node name="move" type="Label" parent="."]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 125.0
+offset_right = 420.0
+offset_bottom = 175.0
+theme_override_fonts/font = ExtResource("1_t784m")
+theme_override_font_sizes/font_size = 42
+text = "Movement:"
+horizontal_alignment = 1
+
+[node name="wasd" type="Label" parent="."]
+layout_mode = 0
+offset_left = 770.0
+offset_top = 125.0
+offset_right = 988.0
+offset_bottom = 175.0
+theme_override_fonts/font = ExtResource("1_t784m")
+theme_override_font_sizes/font_size = 42
+text = "WASD"
+horizontal_alignment = 1
+
+[node name="attack" type="Label" parent="."]
+layout_mode = 0
+offset_left = 189.0
+offset_top = 200.0
+offset_right = 412.0
+offset_bottom = 250.0
+theme_override_fonts/font = ExtResource("1_t784m")
+theme_override_font_sizes/font_size = 42
+text = "Attack:"
+horizontal_alignment = 2
+
+[node name="space" type="Label" parent="."]
+layout_mode = 0
+offset_left = 770.0
+offset_top = 200.0
+offset_right = 988.0
+offset_bottom = 250.0
+theme_override_fonts/font = ExtResource("1_t784m")
+theme_override_font_sizes/font_size = 42
+text = "Left Mouse"
+horizontal_alignment = 1
+
+[node name="switchWeapon" type="Label" parent="."]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 275.0
+offset_right = 415.0
+offset_bottom = 325.0
+theme_override_fonts/font = ExtResource("1_t784m")
+theme_override_font_sizes/font_size = 42
+text = "Switch Weapon:"
+horizontal_alignment = 2
+
+[node name="q" type="Label" parent="."]
+layout_mode = 0
+offset_left = 770.0
+offset_top = 275.0
+offset_right = 988.0
+offset_bottom = 325.0
+theme_override_fonts/font = ExtResource("1_t784m")
+theme_override_font_sizes/font_size = 42
+text = "Q"
+horizontal_alignment = 1
+
+[node name="interact" type="Label" parent="."]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 350.0
+offset_right = 416.0
+offset_bottom = 400.0
+theme_override_fonts/font = ExtResource("1_t784m")
+theme_override_font_sizes/font_size = 42
+text = "Interact:"
+horizontal_alignment = 2
+
+[node name="e" type="Label" parent="."]
+layout_mode = 0
+offset_left = 770.0
+offset_top = 350.0
+offset_right = 988.0
+offset_bottom = 400.0
+theme_override_fonts/font = ExtResource("1_t784m")
+theme_override_font_sizes/font_size = 42
+text = "E"
+horizontal_alignment = 1
+
+[node name="build" type="Label" parent="."]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 425.0
+offset_right = 416.0
+offset_bottom = 475.0
+theme_override_fonts/font = ExtResource("1_t784m")
+theme_override_font_sizes/font_size = 42
+text = "Build:"
+horizontal_alignment = 2
+
+[node name="b" type="Label" parent="."]
+layout_mode = 0
+offset_left = 770.0
+offset_top = 425.0
+offset_right = 988.0
+offset_bottom = 475.0
+theme_override_fonts/font = ExtResource("1_t784m")
+theme_override_font_sizes/font_size = 42
+text = "B	"
+horizontal_alignment = 1
+
+[node name="switchTower" type="Label" parent="."]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 500.0
+offset_right = 416.0
+offset_bottom = 550.0
+theme_override_fonts/font = ExtResource("1_t784m")
+theme_override_font_sizes/font_size = 42
+text = "Switch Tower:"
+horizontal_alignment = 2
+
+[node name="z" type="Label" parent="."]
+layout_mode = 0
+offset_left = 770.0
+offset_top = 500.0
+offset_right = 988.0
+offset_bottom = 550.0
+theme_override_fonts/font = ExtResource("1_t784m")
+theme_override_font_sizes/font_size = 42
+text = "Z"
+horizontal_alignment = 1
+
+[node name="menuButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.512
+anchor_right = 0.512
+offset_left = -98.824
+offset_top = 581.0
+offset_right = 75.176
+offset_bottom = 637.0
+theme_override_fonts/font = ExtResource("1_t784m")
+theme_override_font_sizes/font_size = 24
+text = "Return to Menu"
+
+[connection signal="pressed" from="menuButton" to="." method="_on_menu_button_pressed"]
