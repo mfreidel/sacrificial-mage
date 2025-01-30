@@ -1,5 +1,19 @@
 extends TowerNode
 
+# A nested dictionary structure hold upgrade details.
+var upgrades_table : Dictionary = {
+	"auto_fire": {
+		"text": "Automatic firing",
+		"upgrade_cost": 15.0,
+		"is_applied": false
+	},
+	"increase_damage": {
+		"text": "Increase cannon damage",
+		"upgrade_cost": 10.0,
+		"is_applied": false
+	}
+}
+
 
 @onready var projectile = preload("res://scenes/entities/projectile.tscn")
 @onready var cball_image = preload("res://assets/sprites/cannonball.png")
@@ -113,3 +127,12 @@ func _on_cannon_menu_heal_pressed() -> void:
 	if new_health > MAX_HEALTH:
 		heal_cost = MAX_HEALTH - health # Don't charge more than what gets used.
 	heal_from_player(heal_cost)
+
+
+func _on_upgrade_menu_apply_upgrades(names_list: Array) -> void:
+	pass # Replace with function body.
+
+
+func _on_cannon_menu_upgrade_pressed() -> void:
+	$CannonMenu.hide()
+	$UpgradeMenu.popup()
