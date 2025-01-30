@@ -37,6 +37,7 @@ shape = SubResource("CircleShape2D_cjb6g")
 
 [node name="UpgradeManager" parent="." instance=ExtResource("5_lnsad")]
 
+[connection signal="destroy_pressed" from="StatueMenu" to="." method="_on_statue_menu_destroy_pressed"]
 [connection signal="heal_pressed" from="StatueMenu" to="." method="_on_statue_menu_heal_pressed"]
 [connection signal="upgrade_pressed" from="StatueMenu" to="." method="_on_statue_menu_upgrade_pressed"]
 [connection signal="apply_upgrades" from="UpgradeMenu" to="." method="_on_upgrade_menu_apply_upgrades"]

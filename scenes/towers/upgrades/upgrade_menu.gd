@@ -21,7 +21,9 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-
+func _input(event) -> void:
+	if event.is_action_pressed("interact"):
+		hide()
 func update_tower_upgrades_table():
 	tower_upgrades_table = parent_tower.upgrades_table
 	return tower_upgrades_table

@@ -2,6 +2,7 @@ extends PopupPanel
 
 signal heal_pressed
 signal upgrade_pressed
+signal destroy_pressed
 
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var tower = get_parent()
@@ -24,6 +25,10 @@ func _on_heal_button_pressed() -> void:
 
 func _on_upgrade_button_pressed() -> void:
 	upgrade_pressed.emit()
+
+
+func _on_destroy_button_pressed() -> void:
+	destroy_pressed.emit()
 
 
 func _on_about_to_popup() -> void:

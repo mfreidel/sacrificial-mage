@@ -58,6 +58,7 @@ shape = SubResource("CircleShape2D_cjb6g")
 [node name="UpgradeMenu" parent="." instance=ExtResource("6_ixebr")]
 
 [connection signal="timeout" from="FiringTimer" to="." method="_on_firing_timer_timeout"]
+[connection signal="destroy_pressed" from="CannonMenu" to="." method="_on_cannon_menu_destroy_pressed"]
 [connection signal="fire_pressed" from="CannonMenu" to="." method="_on_cannon_menu_fire_pressed"]
 [connection signal="firing_state_toggled" from="CannonMenu" to="." method="_on_cannon_menu_firing_state_toggled"]
 [connection signal="heal_pressed" from="CannonMenu" to="." method="_on_cannon_menu_heal_pressed"]

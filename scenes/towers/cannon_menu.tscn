@@ -6,7 +6,7 @@
 [node name="CannonMenu" type="PopupPanel"]
 transparent_bg = true
 initial_position = 2
-size = Vector2i(392, 128)
+size = Vector2i(264, 116)
 visible = true
 theme = ExtResource("1_blrw7")
 script = ExtResource("1_1fkch")
@@ -17,18 +17,19 @@ anchor_left = 0.5
 anchor_right = 0.5
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 388.0
-offset_bottom = 124.0
+offset_right = 260.0
+offset_bottom = 112.0
 grow_horizontal = 2
 
 [node name="MenuTitle" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Cannon Menu"
+text = "Cannon"
 horizontal_alignment = 1
 justification_flags = 162
 
 [node name="HealthContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="HealthLabel" type="Label" parent="VBoxContainer/HealthContainer"]
 layout_mode = 2
@@ -60,41 +61,50 @@ text = "Level:"
 layout_mode = 2
 text = "1"
 
-[node name="ButtonContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="CannonButtons" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="FireButton" type="Button" parent="VBoxContainer/ButtonContainer"]
+[node name="FireButton" type="Button" parent="VBoxContainer/CannonButtons"]
 layout_mode = 2
 text = "Fire!"
 
-[node name="ToggleFireButton" type="Button" parent="VBoxContainer/ButtonContainer"]
+[node name="ToggleFireButton" type="Button" parent="VBoxContainer/CannonButtons"]
 visible = false
 layout_mode = 2
 toggle_mode = true
 text = "Auto
 Fire"
 
-[node name="RotateButton" type="Button" parent="VBoxContainer/ButtonContainer"]
+[node name="RotateButton" type="Button" parent="VBoxContainer/CannonButtons"]
 layout_mode = 2
 text = "Rotate"
 
+[node name="ButtonContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
 [node name="HealButton" type="Button" parent="VBoxContainer/ButtonContainer"]
 layout_mode = 2
-text = "Heal (5)"
+text = "Heal+5"
 
 [node name="UpgradeButton" type="Button" parent="VBoxContainer/ButtonContainer"]
 layout_mode = 2
 text = "Upgrade"
+
+[node name="DestroyButton" type="Button" parent="VBoxContainer/ButtonContainer"]
+layout_mode = 2
+text = "Destroy"
 
 [node name="MenuRefresh" type="Timer" parent="."]
 wait_time = 0.2
 
 [connection signal="about_to_popup" from="." to="." method="_on_about_to_popup"]
 [connection signal="popup_hide" from="." to="." method="_on_popup_hide"]
-[connection signal="pressed" from="VBoxContainer/ButtonContainer/FireButton" to="." method="_on_fire_button_pressed"]
-[connection signal="toggled" from="VBoxContainer/ButtonContainer/ToggleFireButton" to="." method="_on_toggle_fire_button_toggled"]
-[connection signal="pressed" from="VBoxContainer/ButtonContainer/RotateButton" to="." method="_on_rotate_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/CannonButtons/FireButton" to="." method="_on_fire_button_pressed"]
+[connection signal="toggled" from="VBoxContainer/CannonButtons/ToggleFireButton" to="." method="_on_toggle_fire_button_toggled"]
+[connection signal="pressed" from="VBoxContainer/CannonButtons/RotateButton" to="." method="_on_rotate_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonContainer/HealButton" to="." method="_on_heal_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonContainer/UpgradeButton" to="." method="_on_upgrade_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonContainer/DestroyButton" to="." method="_on_destroy_button_pressed"]
 [connection signal="timeout" from="MenuRefresh" to="." method="_on_menu_refresh_timeout"]

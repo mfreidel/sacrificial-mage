@@ -124,6 +124,10 @@ func _on_cannon_menu_heal_pressed() -> void:
 func _on_cannon_menu_fire_pressed() -> void:
 	shoot()
 
+func _on_cannon_menu_destroy_pressed() -> void:
+	player_node.increase_health(health)
+	queue_free()
+	print("cannon.gd -- cannon destroyed on button press")
 
 func _on_upgrade_menu_apply_upgrades(names_list: Array) -> void:
 	for upgrade_name in names_list:

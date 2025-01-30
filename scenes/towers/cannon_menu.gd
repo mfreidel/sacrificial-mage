@@ -5,6 +5,7 @@ signal fire_pressed
 signal rotate_pressed
 signal heal_pressed
 signal upgrade_pressed
+signal destroy_pressed
 
 
 @onready var player = get_tree().get_first_node_in_group("player")
@@ -67,3 +68,7 @@ func _on_menu_refresh_timeout() -> void:
 
 func _on_fire_button_pressed() -> void:
 	fire_pressed.emit()
+
+
+func _on_destroy_button_pressed() -> void:
+	destroy_pressed.emit()

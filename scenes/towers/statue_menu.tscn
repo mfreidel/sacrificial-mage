@@ -10,7 +10,7 @@ default_font_size = 20
 [node name="StatueMenu" type="PopupPanel"]
 transparent_bg = true
 initial_position = 2
-size = Vector2i(190, 113)
+size = Vector2i(264, 113)
 visible = true
 theme = SubResource("Theme_8mu52")
 script = ExtResource("2_wpkq1")
@@ -21,18 +21,19 @@ anchor_left = 0.5
 anchor_right = 0.5
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 186.0
+offset_right = 260.0
 offset_bottom = 109.0
 grow_horizontal = 2
 
 [node name="MenuTitle" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Statue Menu"
+text = "Statue"
 horizontal_alignment = 1
 justification_flags = 162
 
 [node name="HealthContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="HealthLabel" type="Label" parent="VBoxContainer/HealthContainer"]
 layout_mode = 2
@@ -76,6 +77,10 @@ text = "Heal +5"
 layout_mode = 2
 text = "Upgrade"
 
+[node name="DestroyButton" type="Button" parent="VBoxContainer/ButtonContainer"]
+layout_mode = 2
+text = "Destroy"
+
 [node name="MenuRefresh" type="Timer" parent="."]
 wait_time = 0.2
 
@@ -83,4 +88,5 @@ wait_time = 0.2
 [connection signal="popup_hide" from="." to="." method="_on_popup_hide"]
 [connection signal="pressed" from="VBoxContainer/ButtonContainer/HealButton" to="." method="_on_heal_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonContainer/UpgradeButton" to="." method="_on_upgrade_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonContainer/DestroyButton" to="." method="_on_destroy_button_pressed"]
 [connection signal="timeout" from="MenuRefresh" to="." method="_on_menu_refresh_timeout"]

@@ -32,7 +32,7 @@ func _ready() -> void:
 
 # Interaction options for the object
 func _on_interact() -> void:
-	$StatueMenu.hide()
+	$StatueMenu.popup()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -77,3 +77,9 @@ func upgrade_max_health() -> void:
 		MAX_HEALTH += 10
 		$UpgradeManager.set_upgrade_is_applied("tower_health")
 		print("statue_tower.gd -- statue max health upgraded!")
+
+
+func _on_statue_menu_destroy_pressed() -> void:
+	player_node.increase_health(health)
+	queue_free()
+	print("statue_tower.gd -- statue destroyed on button press")
