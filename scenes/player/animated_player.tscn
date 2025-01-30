@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://blr0j5erf181a" path="res://scenes/player/player_hud.tscn" id="4_f16uc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qx3if"]
-size = Vector2(30, 14)
+size = Vector2(26, 21)
 
 [sub_resource type="Animation" id="Animation_mymb3"]
 length = 0.001
@@ -112,7 +112,7 @@ states/swing/position = Vector2(384, 100)
 transitions = ["swing", "RESET", SubResource("AnimationNodeStateMachineTransition_vb8ip")]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4k7vu"]
-size = Vector2(12, 18)
+size = Vector2(14, 18)
 
 [sub_resource type="Animation" id="Animation_68vhm"]
 length = 0.001
@@ -359,7 +359,7 @@ texture = ExtResource("3_fx2li")
 hframes = 4
 
 [node name="WeaponCollision" type="CollisionShape2D" parent="MeleeWeapon"]
-position = Vector2(1, -11)
+position = Vector2(0, -18.5)
 shape = SubResource("RectangleShape2D_qx3if")
 disabled = true
 

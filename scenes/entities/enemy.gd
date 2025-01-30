@@ -34,6 +34,11 @@ func death() -> void:
 func damage_health(damage):
 	HEALTH -= damage
 
+func update_health():
+	var healthbar = $HealthBar
+	
+	healthbar.value = HEALTH * 20
+	
 
 func face_left() -> void:
 	$EnemySprite.flip_h = true
@@ -72,6 +77,7 @@ func single_attack(attack_body):
 		print("enemy.gd -- BUGGY CODE! -- Useless attack triggered")
 
 func _physics_process(_delta) -> void:
+	update_health()
 	if HEALTH <= 0:
 		death()
 	if PATH_TARGET && next_agent_path_pos:

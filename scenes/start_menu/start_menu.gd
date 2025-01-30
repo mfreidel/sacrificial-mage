@@ -17,3 +17,6 @@ func _on_start_button_pressed() -> void:
 
 func _on_credits_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/credits/credits.tscn")
+
+func _on_controls_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/controls/controls_screen.tscn")
