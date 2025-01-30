@@ -10,13 +10,13 @@ class_name TowerNode
 ## of the built-in StaticBody2D object.
 
 # Exported vars
-@export var MAX_HEALTH = 20.0
-@export var MAX_LEVEL : int = 5
+@export var DEFAULT_MAX_HEALTH = 15.0
 @export var DEFAULT_BUILD_COST = 5.0
+
+var MAX_HEALTH = DEFAULT_MAX_HEALTH
 
 # All towers will have both health points and levels
 var health = MAX_HEALTH
-var level = 1
 
 # Towers will need access to the level and player nodes
 @onready var level_node = get_tree().get_root().get_node("Level")

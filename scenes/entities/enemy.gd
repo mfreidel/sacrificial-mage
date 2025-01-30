@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var MOVE_SPEED = 25.0
 @export var BASE_DAMAGE = 1.0
 @export var PATH_TARGET: Node2D
+@export var SCORE_VALUE: int = 5
 
 # Vars for path navigation
 @onready var nav_agent = $NavigationAgent2D
@@ -26,6 +27,7 @@ func drop_powerup(powup_name: String) -> void:
 
 func death() -> void:
 	drop_powerup("health")
+	level_node._add_points_to_score(SCORE_VALUE)
 	queue_free()
 
 

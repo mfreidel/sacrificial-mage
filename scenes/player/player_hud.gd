@@ -12,7 +12,7 @@ extends CanvasLayer
 
 # Load weapon images
 @onready var res_sword_img = load("res://assets/ui_images/long_sword1.png")
-@onready var res_arrow_img = load("res://assets/sprites/arrow.png")
+@onready var res_fball_img = load("res://assets/sprites/fire_ball.png")
 
 # Load structure images
 @onready var res_cannon_img = load("res://assets/ui_images/cannon_single.png")
@@ -54,8 +54,10 @@ func get_player_selected_weapon():
 	return list[selection]
 
 
-func get_player_score():
-	pass
+## The score label gets updated via a ScoreController 'score_increased' signal
+## which is attached to animated_player.gd
+func _update_score_label(new_score:int):
+	$MainPanel/MainContainer/StatsRegion/ScoreContainer/ScoreStatus.text = str(new_score)
 
 func get_wave_count():
 	pass
@@ -73,8 +75,8 @@ func update_images() -> void:
 	# Weapon Images
 	if selected_weapon == "melee":
 		weapon_image.texture = res_sword_img
-	elif selected_weapon == "ranged":
-		weapon_image.texture = res_arrow_img
+	elif selected_weapon == "fireball":
+		weapon_image.texture = res_fball_img
 	else:
 		print("player_hud.gd -- Invalid weapon selection: " + str(selected_weapon))
 	
@@ -103,4 +105,5 @@ func _on_menu_button_pressed() -> void:
 
 func _on_player_death() -> void:
 	get_tree().paused = true
+	$GameOverPanel/VBoxContainer/HBoxContainer/FinalScore.text = str(level_node._get_current_score())
 	$GameOverPanel.visible = true

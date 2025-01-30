@@ -1,15 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://d16yhcw7gr0c7"]
+[gd_scene load_steps=9 format=3 uid="uid://d16yhcw7gr0c7"]
 
 [ext_resource type="Script" path="res://scenes/towers/statue_tower.gd" id="1_16yir"]
 [ext_resource type="Texture2D" uid="uid://cqahfi2tm8awy" path="res://assets/sprites/statue.png" id="2_vgdoq"]
 [ext_resource type="PackedScene" uid="uid://brjjb7yuiiqep" path="res://scenes/interaction/interaction_area.tscn" id="3_4emnf"]
 [ext_resource type="PackedScene" uid="uid://2es8iplhbb1" path="res://scenes/towers/statue_menu.tscn" id="4_sex1j"]
+[ext_resource type="PackedScene" uid="uid://bmdql11bg8swt" path="res://scenes/towers/upgrades/upgrade_manager.tscn" id="5_lnsad"]
+[ext_resource type="PackedScene" uid="uid://cq4w3svyhcdta" path="res://scenes/towers/upgrades/upgrade_menu.tscn" id="6_b4vg5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7awts"]
 size = Vector2(31, 34)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cjb6g"]
-radius = 37.108
+radius = 25.0
 
 [node name="StatueTower" type="StaticBody2D" groups=["all_towers", "statue_towers"]]
 z_index = 1
@@ -31,4 +33,11 @@ shape = SubResource("CircleShape2D_cjb6g")
 
 [node name="StatueMenu" parent="." instance=ExtResource("4_sex1j")]
 
+[node name="UpgradeMenu" parent="." instance=ExtResource("6_b4vg5")]
+
+[node name="UpgradeManager" parent="." instance=ExtResource("5_lnsad")]
+
+[connection signal="destroy_pressed" from="StatueMenu" to="." method="_on_statue_menu_destroy_pressed"]
 [connection signal="heal_pressed" from="StatueMenu" to="." method="_on_statue_menu_heal_pressed"]
+[connection signal="upgrade_pressed" from="StatueMenu" to="." method="_on_statue_menu_upgrade_pressed"]
+[connection signal="apply_upgrades" from="UpgradeMenu" to="." method="_on_upgrade_menu_apply_upgrades"]
