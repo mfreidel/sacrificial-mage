@@ -1,9 +1,7 @@
 extends TowerNode
 
 @export var HEALTH_BUFF = 10.0
-
-
-
+@export var LEVEL_TOWER: bool = false
 
 # Make interaction area accessible here
 @onready var interaction_area: InteractionArea = $InteractionArea
@@ -24,10 +22,20 @@ var upgrades_table : Dictionary = {
 	}
 }
 
+func deactivate_tower() -> void:
+	$StatueShape.disabled = true
+	$InteractionArea/CollisionShape2D.disabled = true
 
+func activate_tower() -> void:
+	$StatueShape.disabled = false
+	$InteractionArea/CollisionShape2D.disabled = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if LEVEL_TOWER:
+		deactivate_tower()
+	else:
+		activate_tower()
 	interaction_area.interact = Callable(self, "_on_interact")
 
 # Interaction options for the object
