@@ -13,7 +13,7 @@ func get_text_file_content(filePath):
 	return content
 
 func _on_start_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/levels/Mountain_Range.tscn")
+	get_tree().change_scene_to_file("res://scenes/levels/forest_cliffs.tscn")
 
 func _on_credits_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/credits/credits.tscn")

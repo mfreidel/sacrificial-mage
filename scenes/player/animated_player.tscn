@@ -345,7 +345,7 @@ size = Vector2(30, 28.5)
 
 [node name="AnimatedPlayer" type="CharacterBody2D" groups=["player"]]
 collision_layer = 20
-collision_mask = 35
+collision_mask = 547
 script = ExtResource("1_b2sen")
 
 [node name="MeleeWeapon" type="Area2D" parent="."]
