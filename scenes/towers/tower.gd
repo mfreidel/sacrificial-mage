@@ -10,7 +10,7 @@ class_name TowerNode
 ## of the built-in StaticBody2D object.
 
 # Exported vars
-@export var MAX_HEALTH = 20.0
+@export var MAX_HEALTH = 15.0
 @export var DEFAULT_BUILD_COST = 5.0
 
 # All towers will have both health points and levels

@@ -37,7 +37,7 @@ func refresh_upgrade_options() -> void:
 	for upgrade_name in update_tower_upgrades_table():
 		var entry = tower_upgrades_table[upgrade_name]
 		print("upgrade_menu.gd -- uprgrade entry found: " + str(entry))
-		var button_text = entry["text"] + " (Cost: " + str(entry["upgrade_cost"]) + ")"
+		var button_text = entry["text"] + " (Cost=" + str(entry["upgrade_cost"]) + ")"
 		#var button_text = "foobar"
 		var inst_option = res_option.instantiate()
 		inst_option.text = button_text
