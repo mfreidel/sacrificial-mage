@@ -14,6 +14,7 @@ var upgrades_table : Dictionary = {
 	}
 }
 
+var damage = 2
 var auto_fire_enabled = false
 
 @onready var projectile = preload("res://scenes/entities/projectile.tscn")
@@ -80,6 +81,7 @@ func shoot():
 	instance.dir = facing_rot
 	instance.zdex = z_index - 1
 	instance.spawnPos = global_position
+	instance.DAMAGE = damage
 	if facing_rot == 0:
 		instance.spawnPos += vert_offset
 	instance.spawnRot = facing_rot
@@ -119,15 +121,23 @@ func _on_cannon_menu_heal_pressed() -> void:
 		heal_cost = MAX_HEALTH - health # Don't charge more than what gets used.
 	heal_from_player(heal_cost)
 
+func _on_cannon_menu_fire_pressed() -> void:
+	shoot()
+
 
 func _on_upgrade_menu_apply_upgrades(names_list: Array) -> void:
-	pass # Replace with function body.
+	for upgrade_name in names_list:
+		var record = $UpgradeManager.get_upgrade_record(upgrade_name)
+		if upgrade_name == "increase_damage":
+			if player_node.apply_spell_damage(record["upgrade_cost"]):
+				damage += 1
+				$UpgradeManager.set_upgrade_is_applied(upgrade_name)
+		elif upgrade_name == "auto_fire":
+			if player_node.apply_spell_damage(record["upgrade_cost"]):
+				auto_fire_enabled = true
+				$UpgradeManager.set_upgrade_is_applied(upgrade_name)
 
 
 func _on_cannon_menu_upgrade_pressed() -> void:
 	$CannonMenu.hide()
 	$UpgradeMenu.popup()
-
-
-func _on_cannon_menu_fire_pressed() -> void:
-	shoot()

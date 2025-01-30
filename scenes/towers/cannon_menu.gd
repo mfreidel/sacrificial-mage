@@ -23,8 +23,8 @@ func _input(event) -> void:
 
 
 func refresh_menu() -> void:
-	if !(cannon.auto_fire_enabled):
-		$VBoxContainer/ButtonContainer/ToggleFireButton.visible = false
+	if cannon.auto_fire_enabled == true:
+		$VBoxContainer/ButtonContainer/ToggleFireButton.visible = true
 	# Update Labels
 	health_stat_label.text = str(cannon.health)
 	health_max_label.text = str(cannon.MAX_HEALTH)

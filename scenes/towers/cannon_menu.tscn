@@ -69,6 +69,7 @@ layout_mode = 2
 text = "Fire!"
 
 [node name="ToggleFireButton" type="Button" parent="VBoxContainer/ButtonContainer"]
+visible = false
 layout_mode = 2
 toggle_mode = true
 text = "Auto
