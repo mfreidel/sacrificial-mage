@@ -23,7 +23,7 @@ func _process(_detla) -> void:
 		label.text = base_text + active_areas[0].action_name
 		label.global_position = active_areas[0].global_position
 		label.global_position.y -= 36
-		label.global_position.x -= label.size.x / 2
+		label.global_position.x -= label.size.x / 4
 		label.show()
 	else:
 		label.hide()

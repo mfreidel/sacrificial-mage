@@ -8,13 +8,17 @@ script = ExtResource("1_afyan")
 
 [node name="Label" type="Label" parent="."]
 z_index = 20
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -52.5
-offset_right = 52.5
-offset_bottom = 23.0
-grow_horizontal = 2
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -8.5
+offset_right = 114.0
+offset_bottom = 8.5
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
 theme_override_fonts/font = ExtResource("1_2fpph")
 text = "[e] to interact"
 horizontal_alignment = 1

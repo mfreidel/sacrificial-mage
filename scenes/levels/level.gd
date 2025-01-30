@@ -44,3 +44,6 @@ func _add_points_to_score(incr_val:int) -> void:
 
 func _get_current_score():
 	return $ScoreController.current_score
+
+func get_wave_number():
+	return $WaveController.wave_number
