@@ -341,7 +341,7 @@ states/Walk/position = Vector2(662, 106)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ch7l7"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_86uqt"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_orcxf")]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_it57e"]
-size = Vector2(32, 24)
+size = Vector2(30, 28.5)
 
 [node name="AnimatedPlayer" type="CharacterBody2D" groups=["player"]]
 collision_layer = 20
@@ -401,11 +401,9 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="BuildCollision" type="CollisionShape2D" parent="BuildArea"]
-position = Vector2(0, -17)
+position = Vector2(0, -18)
 shape = SubResource("RectangleShape2D_it57e")
 
 [connection signal="attack_pressed" from="." to="." method="_on_attack_pressed"]
 [connection signal="player_death" from="." to="Camera2D/PlayerHUD" method="_on_player_death"]
 [connection signal="body_entered" from="MeleeWeapon" to="." method="melee_damage"]
-[connection signal="body_shape_entered" from="BuildArea" to="." method="_on_build_area_body_shape_entered"]
-[connection signal="body_shape_exited" from="BuildArea" to="." method="_on_build_area_body_shape_exited"]

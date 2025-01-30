@@ -1,5 +1,21 @@
 extends TowerNode
 
+# A nested dictionary structure hold upgrade details.
+var upgrades_table : Dictionary = {
+	"auto_fire": {
+		"text": "Automatic firing",
+		"upgrade_cost": 15.0,
+		"is_applied": false
+	},
+	"increase_damage": {
+		"text": "Increase cannon damage",
+		"upgrade_cost": 10.0,
+		"is_applied": false
+	}
+}
+
+var damage = 2
+var auto_fire_enabled = false
 
 @onready var projectile = preload("res://scenes/entities/projectile.tscn")
 @onready var cball_image = preload("res://assets/sprites/cannonball.png")
@@ -65,23 +81,14 @@ func shoot():
 	instance.dir = facing_rot
 	instance.zdex = z_index - 1
 	instance.spawnPos = global_position
-	
-	if facing_rot == 0:
+	instance.DAMAGE = damage
+	if (facing_rot == 0) or (facing_rot == 3.14159):
 		instance.spawnPos += vert_offset
 	instance.spawnRot = facing_rot
 	instance.get_node("ProjectileSprite").texture = cball_image
 	instance.get_node("ProjectileSprite").scale = Vector2(1, 1)
 	level_node.add_child.call_deferred(instance)
 
-
-## Unused function.
-func _toggle_firing_timer() -> void:
-	if $FiringTimer.is_stopped():
-		$FiringTimer.start()
-		print("cannon.gd -- FiringTimer started.")
-	else:
-		$FiringTimer.stop()
-		print("cannon.gd -- FiringTimer stopped.")
 
 func _on_firing_timer_timeout() -> void:
 	shoot()
@@ -113,3 +120,28 @@ func _on_cannon_menu_heal_pressed() -> void:
 	if new_health > MAX_HEALTH:
 		heal_cost = MAX_HEALTH - health # Don't charge more than what gets used.
 	heal_from_player(heal_cost)
+
+func _on_cannon_menu_fire_pressed() -> void:
+	shoot()
+
+func _on_cannon_menu_destroy_pressed() -> void:
+	player_node.increase_health(health)
+	queue_free()
+	print("cannon.gd -- cannon destroyed on button press")
+
+func _on_upgrade_menu_apply_upgrades(names_list: Array) -> void:
+	for upgrade_name in names_list:
+		var record = $UpgradeManager.get_upgrade_record(upgrade_name)
+		if upgrade_name == "increase_damage":
+			if player_node.apply_spell_damage(record["upgrade_cost"]):
+				damage += 1
+				$UpgradeManager.set_upgrade_is_applied(upgrade_name)
+		elif upgrade_name == "auto_fire":
+			if player_node.apply_spell_damage(record["upgrade_cost"]):
+				auto_fire_enabled = true
+				$UpgradeManager.set_upgrade_is_applied(upgrade_name)
+
+
+func _on_cannon_menu_upgrade_pressed() -> void:
+	$CannonMenu.hide()
+	$UpgradeMenu.popup()
