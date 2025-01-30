@@ -82,7 +82,7 @@ func shoot():
 	instance.zdex = z_index - 1
 	instance.spawnPos = global_position
 	instance.DAMAGE = damage
-	if facing_rot == 0:
+	if (facing_rot == 0) or (facing_rot == 3.14159):
 		instance.spawnPos += vert_offset
 	instance.spawnRot = facing_rot
 	instance.get_node("ProjectileSprite").texture = cball_image
