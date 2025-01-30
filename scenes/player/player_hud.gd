@@ -2,12 +2,12 @@ extends CanvasLayer
 ## Base-level script for PlayerHUD Node.
 
 # Labels in scene tree to update
-@onready var health_status_label = $MainPanel/MainContainer/HealthContainer/HealthStatus
-@onready var max_health_status_label = $MainPanel/MainContainer/HealthContainer/MaxHealthStatus
+@onready var health_status_label = $HealthContainer/HealthStatus
+@onready var max_health_status_label = $HealthContainer/MaxHealthStatus
 
 # Images in scene tree to update
-@onready var weapon_image = $MainPanel/MainContainer/WeaponImage
-@onready var build_image = $MainPanel/MainContainer/BuildImage
+@onready var weapon_image = $WeaponImage
+@onready var build_image = $BuildImage
 
 # Load weapon images
 @onready var res_sword_img = load("res://assets/ui_images/long_sword1.png")
