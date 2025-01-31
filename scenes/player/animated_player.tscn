@@ -397,7 +397,6 @@ zoom = Vector2(5, 5)
 [node name="PlayerHUD" parent="Camera2D" instance=ExtResource("4_f16uc")]
 
 [node name="BuildArea" type="Area2D" parent="."]
-visible = false
 collision_layer = 2
 collision_mask = 2
 
