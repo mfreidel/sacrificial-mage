@@ -13,87 +13,93 @@ default_font_size = 30
 script = ExtResource("1_6qnt4")
 
 [node name="MainPanel" type="PanelContainer" parent="."]
-custom_minimum_size = Vector2(250, 32)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -571.0
-offset_top = 10.0
-offset_right = 571.0
-offset_bottom = 42.0
+offset_left = -159.0
+offset_right = 159.0
+offset_bottom = 81.0
 grow_horizontal = 2
+size_flags_vertical = 0
 theme = ExtResource("2_syi43")
-theme_type_variation = &"Normal"
 
-[node name="HealthContainer" type="HBoxContainer" parent="."]
-offset_left = 22.0
-offset_top = 10.0
-offset_right = 116.0
-offset_bottom = 42.0
-
-[node name="HealthImgContainer" type="VBoxContainer" parent="HealthContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainPanel"]
 layout_mode = 2
 alignment = 1
 
-[node name="HealthImage" type="TextureRect" parent="HealthContainer/HealthImgContainer"]
-layout_mode = 2
-texture = ExtResource("1_dy3a1")
-stretch_mode = 3
-
-[node name="HealthXLabel" type="Label" parent="HealthContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("4_4pbpy")
-text = "x"
-
-[node name="HealthStatus" type="Label" parent="HealthContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("4_4pbpy")
-text = "0"
-
-[node name="HealthSlashLabel" type="Label" parent="HealthContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("4_4pbpy")
-text = "/"
-
-[node name="MaxHealthStatus" type="Label" parent="HealthContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("4_4pbpy")
-text = "0"
-
-[node name="AttackModeLabel" type="Label" parent="."]
-offset_left = 241.0
-offset_top = 18.0
-offset_right = 343.0
-offset_bottom = 41.0
-theme_override_fonts/font = ExtResource("4_4pbpy")
-text = "Attack Mode:"
-
-[node name="WeaponImage" type="TextureRect" parent="."]
+[node name="WeaponImage" type="TextureRect" parent="MainPanel/HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
-offset_left = 345.0
-offset_top = 10.0
-offset_right = 377.0
-offset_bottom = 42.0
+layout_mode = 2
 tooltip_text = "\"Q\" to switch"
 expand_mode = 4
 stretch_mode = 5
 
-[node name="Wave" type="Label" parent="."]
-offset_left = 816.0
-offset_top = 18.0
-offset_right = 864.0
-offset_bottom = 42.0
-theme_override_fonts/font = ExtResource("4_4pbpy")
+[node name="StatsRegion" type="VBoxContainer" parent="MainPanel/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="WavesContainer" type="HBoxContainer" parent="MainPanel/HBoxContainer/StatsRegion"]
+layout_mode = 2
+alignment = 1
+
+[node name="WaveLabel" type="Label" parent="MainPanel/HBoxContainer/StatsRegion/WavesContainer"]
+layout_mode = 2
 text = "Wave:"
 
-[node name="WaveCount" type="Label" parent="."]
-offset_left = 870.0
-offset_top = 18.0
-offset_right = 897.0
-offset_bottom = 47.0
-size_flags_vertical = 0
+[node name="WaveStatus" type="Label" parent="MainPanel/HBoxContainer/StatsRegion/WavesContainer"]
+layout_mode = 2
+
+[node name="ScoreContainer" type="HBoxContainer" parent="MainPanel/HBoxContainer/StatsRegion"]
+layout_mode = 2
+alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="MainPanel/HBoxContainer/StatsRegion/ScoreContainer"]
+layout_mode = 2
+text = "Score:"
+
+[node name="ScoreStatus" type="Label" parent="MainPanel/HBoxContainer/StatsRegion/ScoreContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="HealthContainer" type="HBoxContainer" parent="MainPanel/HBoxContainer/StatsRegion"]
+layout_mode = 2
+alignment = 1
+
+[node name="HealthImgContainer" type="VBoxContainer" parent="MainPanel/HBoxContainer/StatsRegion/HealthContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HealthImage" type="TextureRect" parent="MainPanel/HBoxContainer/StatsRegion/HealthContainer/HealthImgContainer"]
+layout_mode = 2
+texture = ExtResource("1_dy3a1")
+stretch_mode = 3
+
+[node name="HealthXLabel" type="Label" parent="MainPanel/HBoxContainer/StatsRegion/HealthContainer"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("4_4pbpy")
-text = "1"
+text = "x"
+
+[node name="HealthStatus" type="Label" parent="MainPanel/HBoxContainer/StatsRegion/HealthContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_4pbpy")
+text = "0"
+
+[node name="HealthSlashLabel" type="Label" parent="MainPanel/HBoxContainer/StatsRegion/HealthContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_4pbpy")
+text = "/"
+
+[node name="MaxHealthStatus" type="Label" parent="MainPanel/HBoxContainer/StatsRegion/HealthContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_4pbpy")
+text = "0"
+
+[node name="BuildImage" type="TextureRect" parent="MainPanel/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+tooltip_text = "\"Z\" to switch"
+expand_mode = 4
+stretch_mode = 5
 
 [node name="MessageLabel" type="Label" parent="."]
 offset_left = 490.0
@@ -101,51 +107,6 @@ offset_top = 500.0
 offset_right = 658.0
 offset_bottom = 529.0
 theme_override_fonts/font = ExtResource("4_4pbpy")
-
-[node name="StatsRegion" type="VBoxContainer" parent="."]
-offset_left = 1050.0
-offset_top = 10.0
-offset_right = 1112.0
-offset_bottom = 42.0
-alignment = 1
-
-[node name="ScoreContainer" type="HBoxContainer" parent="StatsRegion"]
-layout_mode = 2
-alignment = 1
-
-[node name="ScoreLabel" type="Label" parent="StatsRegion/ScoreContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("4_4pbpy")
-text = "Score:"
-
-[node name="ScoreStatus" type="Label" parent="StatsRegion/ScoreContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("4_4pbpy")
-text = "0"
-
-[node name="CoinImage" type="TextureRect" parent="."]
-offset_left = 700.0
-offset_top = 10.0
-offset_right = 700.0
-offset_bottom = 42.0
-
-[node name="BuildImage" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(32, 32)
-offset_left = 597.0
-offset_top = 10.0
-offset_right = 629.0
-offset_bottom = 42.0
-tooltip_text = "\"Z\" to switch"
-expand_mode = 4
-stretch_mode = 5
-
-[node name="BuildLabel" type="Label" parent="."]
-offset_left = 536.0
-offset_top = 18.0
-offset_right = 583.0
-offset_bottom = 41.0
-theme_override_fonts/font = ExtResource("4_4pbpy")
-text = "Build:"
 
 [node name="GameOverPanel" type="Panel" parent="."]
 visible = false

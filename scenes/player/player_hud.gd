@@ -2,14 +2,15 @@ extends CanvasLayer
 ## Base-level script for PlayerHUD Node.
 
 # Labels in scene tree to update
-@onready var health_status_label = $HealthContainer/HealthStatus
-@onready var max_health_status_label = $HealthContainer/MaxHealthStatus
-@onready var wave_count_label = $WaveCount
+@onready var health_status_label = $MainPanel/HBoxContainer/StatsRegion/HealthContainer/HealthStatus
+@onready var max_health_status_label = $MainPanel/HBoxContainer/StatsRegion/HealthContainer/MaxHealthStatus
+@onready var wave_count_label = $MainPanel/HBoxContainer/StatsRegion/WavesContainer/WaveStatus
 @onready var player_message_label = $MessageLabel
+@onready var store_status_label = $MainPanel/HBoxContainer/StatsRegion/ScoreContainer/ScoreStatus
 
 # Images in scene tree to update
-@onready var weapon_image = $WeaponImage
-@onready var build_image = $BuildImage
+@onready var weapon_image = $MainPanel/HBoxContainer/WeaponImage
+@onready var build_image = $MainPanel/HBoxContainer/BuildImage
 
 # Load weapon images
 @onready var res_sword_img = load("res://assets/ui_images/long_sword1.png")
@@ -58,8 +59,7 @@ func get_player_selected_weapon():
 ## The score label gets updated via a ScoreController 'score_increased' signal
 ## which is attached to animated_player.gd
 func _update_score_label(new_score:int):
-
-	$StatsRegion/ScoreContainer/ScoreStatus.text = str(new_score)
+	store_status_label.text = str(new_score)
 
 func update_labels() -> void:
 	var player_health = get_player_health()
