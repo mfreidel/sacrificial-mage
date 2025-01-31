@@ -32,21 +32,23 @@ text = "Michael J. Freidel
 - Lead Game Designer
 - Project Manager
 - Game Programming
+- Lead UI Developer
 - Art & Animation Director
 
 
 Nik Schmidt
 ============
-    - Assistant Game Designer
-    - Level Design
-    - Game Testing
+- Assistant Game Designer
+- Level Design
+- Game Testing
 
 
 Will Ford
 =========
-    - Assistant Game Designer
-    - Industry Consultant
-    - Documentation Editor
+- Assistant Game Designer
+- Assistant UI Developer
+- Industry Consultant
+- Documentation Editor
 
 
 Thanks
@@ -55,7 +57,7 @@ Thanks
 - ArMM1998A, Clint Bellanger, and Chris Hammons for their contributions on OGA
 - Jordan Gille for testing and feedback
 
-All art assets were released in the public domain, obtained from opengameart.org"
+All art assets were released in the public domain, and obtained from opengameart.org."
 fit_content = true
 
 [node name="Buttons" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
