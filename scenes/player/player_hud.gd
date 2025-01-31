@@ -5,6 +5,7 @@ extends CanvasLayer
 @onready var health_status_label = $HealthContainer/HealthStatus
 @onready var max_health_status_label = $HealthContainer/MaxHealthStatus
 @onready var wave_count_label = $WaveCount
+@onready var player_message_label = $MessageLabel
 
 # Images in scene tree to update
 @onready var weapon_image = $WeaponImage
@@ -60,7 +61,6 @@ func _update_score_label(new_score:int):
 
 	$StatsRegion/ScoreContainer/ScoreStatus.text = str(new_score)
 
-
 func update_labels() -> void:
 	var player_health = get_player_health()
 	var player_max_health = get_player_max_health()
@@ -68,6 +68,7 @@ func update_labels() -> void:
 	health_status_label.text = str(player_health)
 	max_health_status_label.text = str(player_max_health)
 	wave_count_label.text = str(wave_count)
+	player_message_label.text = level_node.get_player_message()
 
 
 func update_images() -> void:
@@ -100,9 +101,7 @@ func _on_restart_button_pressed() -> void:
 func _on_menu_button_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/start_menu/start_menu.tscn")
-
-
-
+	
 
 func _on_player_death() -> void:
 	get_tree().paused = true

@@ -95,6 +95,13 @@ size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("4_4pbpy")
 text = "1"
 
+[node name="MessageLabel" type="Label" parent="."]
+offset_left = 490.0
+offset_top = 500.0
+offset_right = 658.0
+offset_bottom = 529.0
+theme_override_fonts/font = ExtResource("4_4pbpy")
+
 [node name="StatsRegion" type="VBoxContainer" parent="."]
 offset_left = 1050.0
 offset_top = 10.0

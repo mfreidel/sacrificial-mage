@@ -43,6 +43,15 @@ var facing_rot = 3.14159
 # Instead, this value gets updated during movement handling to determine 
 # which direction the sprite animation is facing
 
+#variable for displaying messages to player
+var message = ""
+
+#function for updating message
+func update_message(player_message:String) -> void:
+	message = player_message
+	await get_tree().create_timer(1.0).timeout
+	message = ""
+
 func _ready():
 	pass
 	
@@ -142,6 +151,8 @@ func build_tower(tower_name:String) -> void:
 			place_statue()
 	else:
 		print("animated_player.gd -- Cannot build due to obstruction") # Player can't see this  message
+		update_message("Cannot build due to obstruction")
+		
 
 
 func place_cannon() -> void:
@@ -158,6 +169,7 @@ func place_cannon() -> void:
 	else: # player can't afford it
 		inst_cannon.queue_free() # Delete instance
 		print("animated_player.gd -- Cannon not placed! (not enough health)") # Player can't see this message
+		update_message("Cannon not placed! (not enough health)")
 
 
 func place_statue() -> void:
@@ -171,6 +183,7 @@ func place_statue() -> void:
 	else:
 		inst_statue.queue_free()
 		print("animated_player.gd -- cannot place statue! (not enough health)")
+		update_message("Cannot place statue! (not enough health)")
 
 
 

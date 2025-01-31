@@ -47,3 +47,6 @@ func _get_current_score():
 
 func get_wave_number():
 	return $WaveController.wave_number
+
+func get_player_message():
+	return $AnimatedPlayer.message
